@@ -5,6 +5,57 @@
 import { config } from '@vue/test-utils'
 import { vi } from 'vitest'
 
+function createMemoryStorage(): Storage {
+  const data = new Map<string, string>()
+
+  return {
+    get length() {
+      return data.size
+    },
+    clear() {
+      data.clear()
+    },
+    getItem(key: string) {
+      return data.has(key) ? data.get(key)! : null
+    },
+    key(index: number) {
+      return Array.from(data.keys())[index] ?? null
+    },
+    removeItem(key: string) {
+      data.delete(key)
+    },
+    setItem(key: string, value: string) {
+      data.set(key, String(value))
+    }
+  }
+}
+
+function ensureStorage(name: 'localStorage' | 'sessionStorage') {
+  const current = globalThis[name]
+  if (
+    current &&
+    typeof current.getItem === 'function' &&
+    typeof current.setItem === 'function' &&
+    typeof current.removeItem === 'function' &&
+    typeof current.clear === 'function'
+  ) {
+    return
+  }
+
+  const storage = createMemoryStorage()
+  Object.defineProperty(globalThis, name, {
+    value: storage,
+    configurable: true
+  })
+  Object.defineProperty(window, name, {
+    value: storage,
+    configurable: true
+  })
+}
+
+ensureStorage('localStorage')
+ensureStorage('sessionStorage')
+
 // Mock requestIdleCallback (Safari < 15 不支持)
 if (typeof globalThis.requestIdleCallback === 'undefined') {
   globalThis.requestIdleCallback = ((callback: IdleRequestCallback) => {

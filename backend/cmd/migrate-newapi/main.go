@@ -119,12 +119,12 @@ func run(ctx context.Context, opts options) error {
 	if err != nil {
 		return fmt.Errorf("open source db: %w", err)
 	}
-	defer sourceDB.Close()
+	defer func() { _ = sourceDB.Close() }()
 	targetDB, err := sql.Open("postgres", opts.targetDSN)
 	if err != nil {
 		return fmt.Errorf("open target db: %w", err)
 	}
-	defer targetDB.Close()
+	defer func() { _ = targetDB.Close() }()
 
 	if err := sourceDB.PingContext(ctx); err != nil {
 		return fmt.Errorf("ping source db: %w", err)
@@ -217,7 +217,7 @@ ORDER BY c.relname`)
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var tables []string
 	for rows.Next() {
@@ -244,7 +244,7 @@ ORDER BY a.attnum`, table)
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var cols []sourceColumn
 	for rows.Next() {
@@ -384,13 +384,13 @@ func copyTableData(ctx context.Context, sourceDB, targetDB *sql.DB, table string
 	if err != nil {
 		return 0, fmt.Errorf("read source table %s: %w", table, err)
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	tx, err := targetDB.BeginTx(ctx, nil)
 	if err != nil {
 		return 0, fmt.Errorf("begin archive tx for %s: %w", table, err)
 	}
-	defer tx.Rollback()
+	defer func() { _ = tx.Rollback() }()
 
 	placeholders := make([]string, len(cols))
 	for i := range placeholders {
@@ -406,7 +406,7 @@ func copyTableData(ctx context.Context, sourceDB, targetDB *sql.DB, table string
 	if err != nil {
 		return 0, fmt.Errorf("prepare archive insert for %s: %w", table, err)
 	}
-	defer stmt.Close()
+	defer func() { _ = stmt.Close() }()
 
 	raw := make([]sql.RawBytes, len(cols))
 	scanArgs := make([]any, len(cols))
@@ -796,16 +796,16 @@ func renderMarkdownReport(rep *report) string {
 	fmt.Fprintf(&b, "- QuotaPerUnit: `%g`\n", rep.QuotaPerUnit)
 	fmt.Fprintf(&b, "- Target migrations applied: `%t`\n\n", rep.MigrationsApplied)
 
-	b.WriteString("## Legacy Archive\n\n")
-	b.WriteString("| Table | Source Rows | Archived Rows | Status |\n")
-	b.WriteString("|---|---:|---:|---|\n")
+	_, _ = b.WriteString("## Legacy Archive\n\n")
+	_, _ = b.WriteString("| Table | Source Rows | Archived Rows | Status |\n")
+	_, _ = b.WriteString("|---|---:|---:|---|\n")
 	for _, item := range rep.LegacyArchive {
 		fmt.Fprintf(&b, "| `%s` | %d | %d | %s |\n", item.Table, item.SourceRows, item.ArchivedRows, item.Status)
 	}
 
-	b.WriteString("\n## Transforms\n\n")
-	b.WriteString("| Step | Rows Affected | Skipped |\n")
-	b.WriteString("|---|---:|---:|\n")
+	_, _ = b.WriteString("\n## Transforms\n\n")
+	_, _ = b.WriteString("| Step | Rows Affected | Skipped |\n")
+	_, _ = b.WriteString("|---|---:|---:|\n")
 	for _, item := range rep.Transforms {
 		fmt.Fprintf(&b, "| `%s` | %d | %d |\n", item.Name, item.RowsAffected, item.Skipped)
 	}
@@ -816,14 +816,14 @@ func renderMarkdownReport(rep *report) string {
 			keys = append(keys, key)
 		}
 		sort.Strings(keys)
-		b.WriteString("\n## Target Summary\n\n")
+		_, _ = b.WriteString("\n## Target Summary\n\n")
 		for _, key := range keys {
 			fmt.Fprintf(&b, "- `%s`: %d\n", key, rep.Summary[key])
 		}
 	}
 
 	if len(rep.Warnings) > 0 {
-		b.WriteString("\n## Warnings\n\n")
+		_, _ = b.WriteString("\n## Warnings\n\n")
 		for _, warning := range rep.Warnings {
 			fmt.Fprintf(&b, "- %s\n", warning)
 		}

@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

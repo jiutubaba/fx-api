@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
 	"github.com/jiutubaba/fx-api/internal/service"
-	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )
 

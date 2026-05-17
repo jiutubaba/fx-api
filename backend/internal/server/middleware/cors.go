@@ -6,8 +6,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 var corsWarningOnce sync.Once

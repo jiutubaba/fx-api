@@ -7,8 +7,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 const (
