@@ -6,10 +6,10 @@ import (
 	"log/slog"
 	"strings"
 
-	dbent "github.com/Wei-Shaw/sub2api/ent"
-	"github.com/Wei-Shaw/sub2api/ent/paymentorder"
-	"github.com/Wei-Shaw/sub2api/ent/paymentproviderinstance"
-	"github.com/Wei-Shaw/sub2api/internal/payment"
+	dbent "github.com/jiutubaba/fuxi-api/ent"
+	"github.com/jiutubaba/fuxi-api/ent/paymentorder"
+	"github.com/jiutubaba/fuxi-api/ent/paymentproviderinstance"
+	"github.com/jiutubaba/fuxi-api/internal/payment"
 )
 
 // GetWebhookProvider returns the provider instance that should verify a webhook.

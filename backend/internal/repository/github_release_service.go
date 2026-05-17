@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Wei-Shaw/sub2api/internal/pkg/httpclient"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/httpclient"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 )
 
 type githubReleaseClient struct {

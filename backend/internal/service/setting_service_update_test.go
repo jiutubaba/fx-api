@@ -7,9 +7,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/Wei-Shaw/sub2api/internal/config"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/antigravity"
-	infraerrors "github.com/Wei-Shaw/sub2api/internal/pkg/errors"
+	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
+	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
 

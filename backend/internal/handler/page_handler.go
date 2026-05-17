@@ -9,10 +9,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Wei-Shaw/sub2api/internal/pkg/response"
-	middleware2 "github.com/Wei-Shaw/sub2api/internal/server/middleware"
-	"github.com/Wei-Shaw/sub2api/internal/service"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
+	middleware2 "github.com/jiutubaba/fuxi-api/internal/server/middleware"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 )
 
 var validSlugPattern = regexp.MustCompile(`^[a-zA-Z0-9][a-zA-Z0-9_-]*$`)
@@ -153,7 +153,7 @@ func resolvePageImagePath(pagesDir, imagesDir, filename string) (string, bool) {
 	if err != nil || !isPathWithinBase(realTarget, realImagesDir) {
 		return "", false
 	}
-	return realTarget, true
+	return cleanedTarget, true
 }
 
 func cleanPageImageRelativePath(filename string) (string, bool) {

@@ -9,12 +9,12 @@ import (
 	"testing"
 	"time"
 
-	dbent "github.com/Wei-Shaw/sub2api/ent"
-	"github.com/Wei-Shaw/sub2api/ent/authidentity"
-	"github.com/Wei-Shaw/sub2api/ent/redeemcode"
-	dbuser "github.com/Wei-Shaw/sub2api/ent/user"
-	"github.com/Wei-Shaw/sub2api/internal/config"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	dbent "github.com/jiutubaba/fuxi-api/ent"
+	"github.com/jiutubaba/fuxi-api/ent/authidentity"
+	"github.com/jiutubaba/fuxi-api/ent/redeemcode"
+	dbuser "github.com/jiutubaba/fuxi-api/ent/user"
+	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )

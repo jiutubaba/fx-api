@@ -6,7 +6,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/stretchr/testify/suite"
 )
 

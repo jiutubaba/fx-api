@@ -5,10 +5,10 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/Wei-Shaw/sub2api/internal/config"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/ctxkey"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/ip"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/ctxkey"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/ip"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

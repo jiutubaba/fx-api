@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	dbent "github.com/Wei-Shaw/sub2api/ent"
-	"github.com/Wei-Shaw/sub2api/ent/accountgroup"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	dbent "github.com/jiutubaba/fuxi-api/ent"
+	"github.com/jiutubaba/fuxi-api/ent/accountgroup"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/stretchr/testify/suite"
 )
 

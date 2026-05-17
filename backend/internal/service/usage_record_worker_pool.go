@@ -8,8 +8,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Wei-Shaw/sub2api/internal/config"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/logger"
+	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
 	"github.com/alitto/pond/v2"
 	"go.uber.org/zap"
 )

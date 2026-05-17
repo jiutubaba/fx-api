@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/Wei-Shaw/sub2api/internal/domain"
-	infraerrors "github.com/Wei-Shaw/sub2api/internal/pkg/errors"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
+	"github.com/jiutubaba/fuxi-api/internal/domain"
+	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
 )
 
 const (

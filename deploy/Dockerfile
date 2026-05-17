@@ -1,5 +1,5 @@
 # =============================================================================
-# Sub2API Multi-Stage Dockerfile
+# 伏羲API Multi-Stage Dockerfile
 # =============================================================================
 # Stage 1: Build frontend
 # Stage 2: Build Go backend with embedded frontend
@@ -60,12 +60,15 @@ COPY backend/ ./
 # Copy frontend dist from previous stage (must be after backend copy to avoid being overwritten)
 COPY --from=frontend-builder /app/backend/internal/web/dist ./internal/web/dist
 
-# Build the binary (BuildType=release for CI builds, embed frontend)
+# Build the binaries (BuildType=release for CI builds, embed frontend)
 RUN CGO_ENABLED=0 GOOS=linux go build \
     -tags embed \
     -ldflags="-s -w -X main.Commit=${COMMIT} -X main.Date=${DATE:-$(date -u +%Y-%m-%dT%H:%M:%SZ)} -X main.BuildType=release" \
     -o /app/sub2api \
-    ./cmd/server
+    ./cmd/server && \
+    CGO_ENABLED=0 GOOS=linux go build \
+    -o /app/migrate-newapi \
+    ./cmd/migrate-newapi
 
 # -----------------------------------------------------------------------------
 # Stage 3: Final Runtime Image
@@ -73,9 +76,10 @@ RUN CGO_ENABLED=0 GOOS=linux go build \
 FROM ${ALPINE_IMAGE}
 
 # Labels
-LABEL maintainer="Wei-Shaw <github.com/Wei-Shaw>"
-LABEL description="Sub2API - AI API Gateway Platform"
-LABEL org.opencontainers.image.source="https://github.com/Wei-Shaw/sub2api"
+LABEL maintainer="jiutubaba <github.com/jiutubaba>"
+LABEL description="伏羲API - AI API Gateway Platform"
+LABEL org.opencontainers.image.source="https://github.com/jiutubaba/fuxi-api"
+LABEL org.opencontainers.image.base.source="https://github.com/Wei-Shaw/sub2api"
 
 # Install runtime dependencies
 RUN apk add --no-cache \
@@ -94,6 +98,7 @@ WORKDIR /app
 
 # Copy binary from builder
 COPY --from=backend-builder /app/sub2api /app/sub2api
+COPY --from=backend-builder /app/migrate-newapi /app/migrate-newapi
 
 # Create data directory
 RUN mkdir -p /app/data && chown -R sub2api:sub2api /app

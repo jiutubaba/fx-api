@@ -6,11 +6,11 @@ import (
 	"sort"
 	"strings"
 
-	dbent "github.com/Wei-Shaw/sub2api/ent"
-	"github.com/Wei-Shaw/sub2api/ent/proxy"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	dbent "github.com/jiutubaba/fuxi-api/ent"
+	"github.com/jiutubaba/fuxi-api/ent/proxy"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
 
 	entsql "entgo.io/ent/dialect/sql"
 )

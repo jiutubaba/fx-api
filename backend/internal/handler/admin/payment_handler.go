@@ -3,9 +3,9 @@ package admin
 import (
 	"strconv"
 
-	dbent "github.com/Wei-Shaw/sub2api/ent"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/response"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	dbent "github.com/jiutubaba/fuxi-api/ent"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

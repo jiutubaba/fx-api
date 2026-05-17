@@ -7,10 +7,10 @@ import (
 	"log"
 	"time"
 
-	_ "github.com/Wei-Shaw/sub2api/ent/runtime"
-	"github.com/Wei-Shaw/sub2api/internal/config"
-	"github.com/Wei-Shaw/sub2api/internal/repository"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	_ "github.com/jiutubaba/fuxi-api/ent/runtime"
+	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fuxi-api/internal/repository"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 )
 
 func main() {

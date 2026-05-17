@@ -6,7 +6,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/Wei-Shaw/sub2api/internal/config"
+	"github.com/jiutubaba/fuxi-api/internal/config"
 	"github.com/stretchr/testify/require"
 )
 

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/Wei-Shaw/sub2api/internal/pkg/apicompat"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/apicompat"
 )
 
 const (

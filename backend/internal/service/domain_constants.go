@@ -1,6 +1,6 @@
 package service
 
-import "github.com/Wei-Shaw/sub2api/internal/domain"
+import "github.com/jiutubaba/fuxi-api/internal/domain"
 
 // Status constants
 const (

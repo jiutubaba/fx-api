@@ -4,11 +4,11 @@ import (
 	"context"
 	"strings"
 
-	dbent "github.com/Wei-Shaw/sub2api/ent"
-	"github.com/Wei-Shaw/sub2api/ent/promocode"
-	"github.com/Wei-Shaw/sub2api/ent/promocodeusage"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	dbent "github.com/jiutubaba/fuxi-api/ent"
+	"github.com/jiutubaba/fuxi-api/ent/promocode"
+	"github.com/jiutubaba/fuxi-api/ent/promocodeusage"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 
 	entsql "entgo.io/ent/dialect/sql"
 )

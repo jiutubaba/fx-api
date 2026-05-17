@@ -12,10 +12,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Wei-Shaw/sub2api/internal/config"
-	infraerrors "github.com/Wei-Shaw/sub2api/internal/pkg/errors"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/logger"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
+	"github.com/jiutubaba/fuxi-api/internal/config"
+	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
 )
 
 const (

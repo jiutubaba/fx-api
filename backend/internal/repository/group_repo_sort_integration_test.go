@@ -3,8 +3,8 @@
 package repository
 
 import (
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 )
 
 func (s *GroupRepoSuite) TestList_DefaultSortBySortOrderAsc() {

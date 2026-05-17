@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/Wei-Shaw/sub2api/ent"
-	infraerrors "github.com/Wei-Shaw/sub2api/internal/pkg/errors"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/logger"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
+	dbent "github.com/jiutubaba/fuxi-api/ent"
+	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
 )
 
 var (

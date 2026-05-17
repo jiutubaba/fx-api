@@ -5,13 +5,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Wei-Shaw/sub2api/internal/handler/dto"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/pagination"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/response"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/timezone"
-	"github.com/Wei-Shaw/sub2api/internal/pkg/usagestats"
-	middleware2 "github.com/Wei-Shaw/sub2api/internal/server/middleware"
-	"github.com/Wei-Shaw/sub2api/internal/service"
+	"github.com/jiutubaba/fuxi-api/internal/handler/dto"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/timezone"
+	"github.com/jiutubaba/fuxi-api/internal/pkg/usagestats"
+	middleware2 "github.com/jiutubaba/fuxi-api/internal/server/middleware"
+	"github.com/jiutubaba/fuxi-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

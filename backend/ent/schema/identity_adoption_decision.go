@@ -3,7 +3,7 @@ package schema
 import (
 	"time"
 
-	"github.com/Wei-Shaw/sub2api/ent/schema/mixins"
+	"github.com/jiutubaba/fuxi-api/ent/schema/mixins"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"
