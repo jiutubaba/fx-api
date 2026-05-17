@@ -8,6 +8,7 @@ services:
     volumes:
       - ./data:/app/data
       - ./reports:/app/reports
+      - ./legal:/app/legal:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
@@ -35,6 +36,8 @@ services:
       - TOTP_ENCRYPTION_KEY=${TOTP_ENCRYPTION_KEY:?TOTP_ENCRYPTION_KEY is required}
       - LOG_SERVICE_NAME=${LOG_SERVICE_NAME:-fuxi-api}
       - LOG_ENV=${LOG_ENV:-production}
+      - NEWAPI_SOURCE_DSN=${NEWAPI_SOURCE_DSN:-}
+      - FUXI_TARGET_DSN=${FUXI_TARGET_DSN:-}
     healthcheck:
       test: ["CMD", "wget", "-q", "-T", "5", "-O", "/dev/null", "http://localhost:8080/health"]
       interval: 30s

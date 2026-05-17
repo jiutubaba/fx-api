@@ -17,6 +17,15 @@
 - `--mode`: `dry-run` 只生成报告；`apply` 会先执行 sub2api migrations，再写入 `legacy_newapi` 和目标正式表
 - `--report-dir`: 输出 JSON 与 Markdown 报告
 
+服务器上优先使用包装脚本，避免手工拼接 DSN：
+
+```bash
+sudo APP_ROOT=/data/fuxi-api/staging SOURCE_NAME=staging MODE=dry-run ./migrate.sh
+sudo APP_ROOT=/data/fuxi-api/staging SOURCE_NAME=staging MODE=apply CONFIRM_APPLY=staging ./migrate.sh
+```
+
+`apply` 模式必须显式设置 `CONFIRM_APPLY=<source-name>`。生产 shadow 演练时使用 `SOURCE_NAME=prod`，但 `APP_ROOT` 必须指向 shadow 目标库对应目录。
+
 ## 执行顺序
 
 1. 对生产库执行 `dry-run`，生成 shadow 迁移前报告。
