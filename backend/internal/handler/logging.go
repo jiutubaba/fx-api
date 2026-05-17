@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 	"go.uber.org/zap"
 )
 

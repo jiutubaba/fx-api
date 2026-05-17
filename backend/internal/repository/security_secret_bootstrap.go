@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/securitysecret"
-	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/securitysecret"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 const (

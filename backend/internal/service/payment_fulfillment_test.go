@@ -8,8 +8,8 @@ import (
 	"math"
 	"testing"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/internal/payment"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/internal/payment"
 	"github.com/stretchr/testify/assert"
 )
 

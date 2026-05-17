@@ -3,8 +3,8 @@ package handler
 import (
 	"strings"
 
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 // ──────────────────────────────────────────────────────────

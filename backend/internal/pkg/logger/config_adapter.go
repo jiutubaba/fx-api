@@ -1,6 +1,6 @@
 package logger
 
-import "github.com/jiutubaba/fuxi-api/internal/config"
+import "github.com/jiutubaba/fx-api/internal/config"
 
 func OptionsFromConfig(cfg config.LogConfig) InitOptions {
 	return InitOptions{

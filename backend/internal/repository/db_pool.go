@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 type dbPoolSettings struct {

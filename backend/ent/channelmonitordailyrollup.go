@@ -9,8 +9,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitor"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitordailyrollup"
+	"github.com/jiutubaba/fx-api/ent/channelmonitor"
+	"github.com/jiutubaba/fx-api/ent/channelmonitordailyrollup"
 )
 
 // ChannelMonitorDailyRollup is the model entity for the ChannelMonitorDailyRollup schema.

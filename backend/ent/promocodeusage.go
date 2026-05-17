@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/promocode"
-	"github.com/jiutubaba/fuxi-api/ent/promocodeusage"
-	"github.com/jiutubaba/fuxi-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/promocode"
+	"github.com/jiutubaba/fx-api/ent/promocodeusage"
+	"github.com/jiutubaba/fx-api/ent/user"
 )
 
 // PromoCodeUsage is the model entity for the PromoCodeUsage schema.

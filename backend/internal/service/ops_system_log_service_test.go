@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 func TestOpsServiceListSystemLogs_DefaultClampAndSuccess(t *testing.T) {

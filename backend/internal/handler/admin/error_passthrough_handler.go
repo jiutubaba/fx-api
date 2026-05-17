@@ -3,10 +3,10 @@ package admin
 import (
 	"strconv"
 
-	"github.com/jiutubaba/fuxi-api/internal/model"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/model"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 // ErrorPassthroughHandler 处理错误透传规则的 HTTP 请求

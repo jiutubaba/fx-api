@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"strings"
 
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

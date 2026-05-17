@@ -20,10 +20,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/jiutubaba/fx-api/internal/pkg/antigravity"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 	"github.com/tidwall/gjson"
 )
 

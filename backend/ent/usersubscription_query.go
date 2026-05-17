@@ -13,11 +13,11 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/group"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
-	"github.com/jiutubaba/fuxi-api/ent/usagelog"
-	"github.com/jiutubaba/fuxi-api/ent/user"
-	"github.com/jiutubaba/fuxi-api/ent/usersubscription"
+	"github.com/jiutubaba/fx-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/usagelog"
+	"github.com/jiutubaba/fx-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/usersubscription"
 )
 
 // UserSubscriptionQuery is the builder for querying UserSubscription entities.

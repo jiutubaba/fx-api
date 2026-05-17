@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/repository"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/repository"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	_ "github.com/lib/pq"
 	"github.com/redis/go-redis/v9"

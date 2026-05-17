@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/errorpassthroughrule"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/errorpassthroughrule"
+	"github.com/jiutubaba/fx-api/ent/predicate"
 )
 
 // ErrorPassthroughRuleDelete is the builder for deleting a ErrorPassthroughRule entity.

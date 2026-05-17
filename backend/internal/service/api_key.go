@@ -3,7 +3,7 @@ package service
 import (
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/ip"
+	"github.com/jiutubaba/fx-api/internal/pkg/ip"
 )
 
 // API Key status constants

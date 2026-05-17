@@ -7,10 +7,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/server/middleware"
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 type responseEnvelope struct {

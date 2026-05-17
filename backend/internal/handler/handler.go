@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/jiutubaba/fuxi-api/internal/handler/admin"
+	"github.com/jiutubaba/fx-api/internal/handler/admin"
 )
 
 // AdminHandlers contains all admin-related HTTP handlers

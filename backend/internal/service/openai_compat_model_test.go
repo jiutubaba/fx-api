@@ -15,9 +15,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/apicompat"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/apicompat"
 	"github.com/stretchr/testify/require"
 	"github.com/tidwall/gjson"
 )

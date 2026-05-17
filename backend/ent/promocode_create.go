@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/promocode"
-	"github.com/jiutubaba/fuxi-api/ent/promocodeusage"
+	"github.com/jiutubaba/fx-api/ent/promocode"
+	"github.com/jiutubaba/fx-api/ent/promocodeusage"
 )
 
 // PromoCodeCreate is the builder for creating a PromoCode entity.

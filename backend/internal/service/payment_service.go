@@ -12,10 +12,10 @@ import (
 	"sync"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/paymentproviderinstance"
-	"github.com/jiutubaba/fuxi-api/internal/payment"
-	"github.com/jiutubaba/fuxi-api/internal/payment/provider"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/paymentproviderinstance"
+	"github.com/jiutubaba/fx-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/payment/provider"
 )
 
 // --- Order Status Constants ---

@@ -10,8 +10,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/announcement"
-	"github.com/jiutubaba/fuxi-api/internal/domain"
+	"github.com/jiutubaba/fx-api/ent/announcement"
+	"github.com/jiutubaba/fx-api/internal/domain"
 )
 
 // Announcement is the model entity for the Announcement schema.

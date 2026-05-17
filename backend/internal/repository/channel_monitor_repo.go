@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitor"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitorhistory"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/channelmonitor"
+	"github.com/jiutubaba/fx-api/ent/channelmonitorhistory"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"github.com/lib/pq"
 )
 

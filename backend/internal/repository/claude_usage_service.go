@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"time"
 
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/httpclient"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
+	"github.com/jiutubaba/fx-api/internal/pkg/httpclient"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 const defaultClaudeUsageURL = "https://api.anthropic.com/api/oauth/usage"

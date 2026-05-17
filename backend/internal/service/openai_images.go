@@ -19,10 +19,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/util/responseheaders"
 	"github.com/gin-gonic/gin"
 	"github.com/imroc/req/v3"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/util/responseheaders"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )

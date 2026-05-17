@@ -14,8 +14,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	"github.com/jiutubaba/fx-api/internal/payment"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 )
 
 const paymentResultReturnPath = "/payment/result"

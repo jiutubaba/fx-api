@@ -7,7 +7,7 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/predicate"
 )
 
 // UserID applies equality check predicate on the "user_id" field. It's identical to UserIDEQ.

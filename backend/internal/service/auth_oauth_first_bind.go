@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
+	dbent "github.com/jiutubaba/fx-api/ent"
 
 	entsql "entgo.io/ent/dialect/sql"
 )

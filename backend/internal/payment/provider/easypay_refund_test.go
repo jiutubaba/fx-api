@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/payment"
 )
 
 func TestNormalizeEasyPayAPIBase(t *testing.T) {

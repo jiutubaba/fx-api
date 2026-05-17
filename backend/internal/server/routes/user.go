@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"github.com/jiutubaba/fuxi-api/internal/handler"
-	"github.com/jiutubaba/fuxi-api/internal/server/middleware"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/handler"
+	"github.com/jiutubaba/fx-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

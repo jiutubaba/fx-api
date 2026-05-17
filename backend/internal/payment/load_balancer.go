@@ -9,9 +9,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/paymentorder"
-	"github.com/jiutubaba/fuxi-api/ent/paymentproviderinstance"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/paymentorder"
+	"github.com/jiutubaba/fx-api/ent/paymentproviderinstance"
 )
 
 // Strategy represents a load balancing strategy for provider instance selection.

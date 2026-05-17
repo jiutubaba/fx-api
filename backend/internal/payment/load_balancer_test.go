@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
+	dbent "github.com/jiutubaba/fx-api/ent"
 )
 
 func TestInstanceSupportsType(t *testing.T) {

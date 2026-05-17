@@ -9,8 +9,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/model"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

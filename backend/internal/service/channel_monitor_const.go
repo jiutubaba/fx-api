@@ -3,7 +3,7 @@ package service
 import (
 	"time"
 
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 )
 
 // ChannelMonitor 全局常量。

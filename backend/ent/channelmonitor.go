@@ -10,8 +10,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitor"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitorrequesttemplate"
+	"github.com/jiutubaba/fx-api/ent/channelmonitor"
+	"github.com/jiutubaba/fx-api/ent/channelmonitorrequesttemplate"
 )
 
 // ChannelMonitor is the model entity for the ChannelMonitor schema.

@@ -11,14 +11,14 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/account"
-	"github.com/jiutubaba/fuxi-api/ent/apikey"
-	"github.com/jiutubaba/fuxi-api/ent/group"
-	"github.com/jiutubaba/fuxi-api/ent/redeemcode"
-	"github.com/jiutubaba/fuxi-api/ent/usagelog"
-	"github.com/jiutubaba/fuxi-api/ent/user"
-	"github.com/jiutubaba/fuxi-api/ent/usersubscription"
-	"github.com/jiutubaba/fuxi-api/internal/domain"
+	"github.com/jiutubaba/fx-api/ent/account"
+	"github.com/jiutubaba/fx-api/ent/apikey"
+	"github.com/jiutubaba/fx-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/redeemcode"
+	"github.com/jiutubaba/fx-api/ent/usagelog"
+	"github.com/jiutubaba/fx-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/usersubscription"
+	"github.com/jiutubaba/fx-api/internal/domain"
 )
 
 // GroupCreate is the builder for creating a Group entity.

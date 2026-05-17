@@ -4,10 +4,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jiutubaba/fuxi-api/internal/handler/dto"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	middleware2 "github.com/jiutubaba/fuxi-api/internal/server/middleware"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/handler/dto"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	middleware2 "github.com/jiutubaba/fx-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

@@ -5,8 +5,8 @@ package repository
 import (
 	"context"
 
-	"github.com/jiutubaba/fuxi-api/ent/authidentity"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/ent/authidentity"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 func (s *UserRepoSuite) TestCreate_CreatesEmailAuthIdentityForNormalEmail() {

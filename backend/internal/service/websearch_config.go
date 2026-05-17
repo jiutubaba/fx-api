@@ -8,8 +8,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/websearch"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
+	"github.com/jiutubaba/fx-api/internal/pkg/websearch"
 	"golang.org/x/sync/singleflight"
 )
 

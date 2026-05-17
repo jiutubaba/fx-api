@@ -7,7 +7,7 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

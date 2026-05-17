@@ -9,9 +9,9 @@ import (
 	"strconv"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/paymentauditlog"
-	"github.com/jiutubaba/fuxi-api/ent/paymentorder"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/paymentauditlog"
+	"github.com/jiutubaba/fx-api/ent/paymentorder"
 )
 
 // --- Dashboard & Analytics ---

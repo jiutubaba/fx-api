@@ -3,10 +3,10 @@ package repository
 import (
 	"context"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/userattributedefinition"
-	"github.com/jiutubaba/fuxi-api/ent/userattributevalue"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/userattributedefinition"
+	"github.com/jiutubaba/fx-api/ent/userattributevalue"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 // UserAttributeDefinitionRepository implementation

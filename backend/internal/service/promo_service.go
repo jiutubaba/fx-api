@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
 )
 
 var (

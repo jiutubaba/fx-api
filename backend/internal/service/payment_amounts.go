@@ -3,7 +3,7 @@ package service
 import (
 	"math"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/payment"
 	"github.com/shopspring/decimal"
 )
 

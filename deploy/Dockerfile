@@ -78,7 +78,7 @@ FROM ${ALPINE_IMAGE}
 # Labels
 LABEL maintainer="jiutubaba <github.com/jiutubaba>"
 LABEL description="伏羲API - AI API Gateway Platform"
-LABEL org.opencontainers.image.source="https://github.com/jiutubaba/fuxi-api"
+LABEL org.opencontainers.image.source="https://github.com/jiutubaba/fx-api"
 LABEL org.opencontainers.image.base.source="https://github.com/Wei-Shaw/sub2api"
 
 # Install runtime dependencies

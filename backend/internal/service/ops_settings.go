@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 	"strings"
 	"time"
 )

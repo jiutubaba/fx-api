@@ -16,9 +16,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyurl"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyutil"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyurl"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyutil"
 )
 
 const (

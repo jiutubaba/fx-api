@@ -9,13 +9,13 @@ import (
 	"testing"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/authidentity"
-	"github.com/jiutubaba/fuxi-api/ent/redeemcode"
-	dbuser "github.com/jiutubaba/fuxi-api/ent/user"
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/gin-gonic/gin"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/authidentity"
+	"github.com/jiutubaba/fx-api/ent/redeemcode"
+	dbuser "github.com/jiutubaba/fx-api/ent/user"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"github.com/stretchr/testify/require"
 )
 

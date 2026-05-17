@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
-	"github.com/jiutubaba/fuxi-api/ent/securitysecret"
+	"github.com/jiutubaba/fx-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/securitysecret"
 )
 
 // SecuritySecretUpdate is the builder for updating SecuritySecret entities.

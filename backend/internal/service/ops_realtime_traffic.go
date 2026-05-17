@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 )
 
 // GetRealtimeTrafficSummary returns QPS/TPS current/peak/avg for the provided window.

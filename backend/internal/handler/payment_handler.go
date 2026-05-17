@@ -6,13 +6,13 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/internal/payment"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	middleware2 "github.com/jiutubaba/fuxi-api/internal/server/middleware"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/internal/payment"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	middleware2 "github.com/jiutubaba/fx-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

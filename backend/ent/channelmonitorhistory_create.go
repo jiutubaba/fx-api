@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitor"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitorhistory"
+	"github.com/jiutubaba/fx-api/ent/channelmonitor"
+	"github.com/jiutubaba/fx-api/ent/channelmonitorhistory"
 )
 
 // ChannelMonitorHistoryCreate is the builder for creating a ChannelMonitorHistory entity.

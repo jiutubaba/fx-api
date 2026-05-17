@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/group"
-	"github.com/jiutubaba/fuxi-api/ent/redeemcode"
-	"github.com/jiutubaba/fuxi-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/redeemcode"
+	"github.com/jiutubaba/fx-api/ent/user"
 )
 
 // RedeemCodeCreate is the builder for creating a RedeemCode entity.

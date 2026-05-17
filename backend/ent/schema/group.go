@@ -1,8 +1,8 @@
 package schema
 
 import (
-	"github.com/jiutubaba/fuxi-api/ent/schema/mixins"
-	"github.com/jiutubaba/fuxi-api/internal/domain"
+	"github.com/jiutubaba/fx-api/ent/schema/mixins"
+	"github.com/jiutubaba/fx-api/internal/domain"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"

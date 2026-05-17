@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/handler"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/handler"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"github.com/stretchr/testify/require"
 )
 

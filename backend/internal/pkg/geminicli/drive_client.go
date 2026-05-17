@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/httpclient"
+	"github.com/jiutubaba/fx-api/internal/pkg/httpclient"
 )
 
 // DriveStorageInfo represents Google Drive storage quota information

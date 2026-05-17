@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/antigravity"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 )
 
 const (

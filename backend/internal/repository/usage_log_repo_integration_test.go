@@ -11,11 +11,11 @@ import (
 
 	"github.com/google/uuid"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/timezone"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/usagestats"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fx-api/internal/pkg/timezone"
+	"github.com/jiutubaba/fx-api/internal/pkg/usagestats"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 )

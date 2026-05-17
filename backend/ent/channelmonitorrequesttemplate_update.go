@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitor"
-	"github.com/jiutubaba/fuxi-api/ent/channelmonitorrequesttemplate"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/channelmonitor"
+	"github.com/jiutubaba/fx-api/ent/channelmonitorrequesttemplate"
+	"github.com/jiutubaba/fx-api/ent/predicate"
 )
 
 // ChannelMonitorRequestTemplateUpdate is the builder for updating ChannelMonitorRequestTemplate entities.

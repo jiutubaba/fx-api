@@ -1,6 +1,6 @@
 services:
   fuxi-api:
-    image: ${IMAGE:-ghcr.io/jiutubaba/fuxi-api:latest}
+    image: ${IMAGE:-ghcr.io/jiutubaba/fx-api:latest}
     container_name: ${APP_CONTAINER_NAME:-fuxi-api}
     restart: unless-stopped
     ports:

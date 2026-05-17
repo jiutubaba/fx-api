@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
-	"github.com/jiutubaba/fuxi-api/ent/proxy"
+	"github.com/jiutubaba/fx-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/proxy"
 )
 
 // ProxyDelete is the builder for deleting a Proxy entity.

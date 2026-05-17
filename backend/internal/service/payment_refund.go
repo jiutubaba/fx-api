@@ -10,11 +10,11 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/paymentorder"
-	"github.com/jiutubaba/fuxi-api/ent/paymentproviderinstance"
-	"github.com/jiutubaba/fuxi-api/internal/payment"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/paymentorder"
+	"github.com/jiutubaba/fx-api/ent/paymentproviderinstance"
+	"github.com/jiutubaba/fx-api/internal/payment"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 )
 
 // --- Refund Flow ---

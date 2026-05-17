@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/apicompat"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/pkg/apicompat"
 	"github.com/tidwall/gjson"
 )
 

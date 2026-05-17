@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 // AESEncryptor implements SecretEncryptor using AES-256-GCM

@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/repository"
+	"github.com/jiutubaba/fx-api/internal/repository"
 
 	_ "github.com/lib/pq"
 )

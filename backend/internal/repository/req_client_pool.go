@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyurl"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyurl"
 
 	"github.com/imroc/req/v3"
 )

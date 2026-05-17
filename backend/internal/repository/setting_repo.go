@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/setting"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/setting"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 type settingRepository struct {

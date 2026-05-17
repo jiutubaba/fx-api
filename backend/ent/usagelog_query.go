@@ -12,13 +12,13 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/account"
-	"github.com/jiutubaba/fuxi-api/ent/apikey"
-	"github.com/jiutubaba/fuxi-api/ent/group"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
-	"github.com/jiutubaba/fuxi-api/ent/usagelog"
-	"github.com/jiutubaba/fuxi-api/ent/user"
-	"github.com/jiutubaba/fuxi-api/ent/usersubscription"
+	"github.com/jiutubaba/fx-api/ent/account"
+	"github.com/jiutubaba/fx-api/ent/apikey"
+	"github.com/jiutubaba/fx-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/usagelog"
+	"github.com/jiutubaba/fx-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/usersubscription"
 )
 
 // UsageLogQuery is the builder for querying UsageLog entities.

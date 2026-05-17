@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"go.uber.org/zap"
 )
 

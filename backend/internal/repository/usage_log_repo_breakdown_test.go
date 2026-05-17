@@ -5,7 +5,7 @@ package repository
 import (
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/usagestats"
+	"github.com/jiutubaba/fx-api/internal/pkg/usagestats"
 	"github.com/stretchr/testify/require"
 )
 

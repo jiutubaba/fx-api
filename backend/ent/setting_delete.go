@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
-	"github.com/jiutubaba/fuxi-api/ent/setting"
+	"github.com/jiutubaba/fx-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/setting"
 )
 
 // SettingDelete is the builder for deleting a Setting entity.

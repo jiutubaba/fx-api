@@ -5,10 +5,10 @@ package repository
 import (
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/usagestats"
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/google/uuid"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fx-api/internal/pkg/usagestats"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 func (s *UsageLogRepoSuite) TestListWithFilters_SortByModelAsc() {

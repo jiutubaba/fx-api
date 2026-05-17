@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/user"
-	"github.com/jiutubaba/fuxi-api/ent/userattributedefinition"
-	"github.com/jiutubaba/fuxi-api/ent/userattributevalue"
+	"github.com/jiutubaba/fx-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/userattributedefinition"
+	"github.com/jiutubaba/fx-api/ent/userattributevalue"
 )
 
 // UserAttributeValueCreate is the builder for creating a UserAttributeValue entity.

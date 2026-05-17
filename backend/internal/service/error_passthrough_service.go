@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/model"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/model"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 )
 
 // ErrorPassthroughRepository 定义错误透传规则的数据访问接口

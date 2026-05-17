@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/geminicli"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/googleapi"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/pkg/geminicli"
+	"github.com/jiutubaba/fx-api/internal/pkg/googleapi"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/imroc/req/v3"
 )

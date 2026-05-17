@@ -7,7 +7,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 // APIKeyRateLimitCacheData holds rate limit usage data cached in Redis.

@@ -1,6 +1,6 @@
 package service
 
-import "github.com/jiutubaba/fuxi-api/internal/domain"
+import "github.com/jiutubaba/fx-api/internal/domain"
 
 // Status constants
 const (

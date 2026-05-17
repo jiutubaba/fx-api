@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/payment"
 )
 
 // EasyPay constants.

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/gin-gonic/gin"
 )
 

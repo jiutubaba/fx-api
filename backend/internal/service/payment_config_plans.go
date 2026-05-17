@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/group"
-	"github.com/jiutubaba/fuxi-api/ent/subscriptionplan"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/subscriptionplan"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 )
 
 // validatePlanRequired checks that all required fields for a plan are provided.

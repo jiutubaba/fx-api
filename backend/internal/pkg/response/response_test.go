@@ -9,8 +9,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	errors2 "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
 	"github.com/gin-gonic/gin"
+	errors2 "github.com/jiutubaba/fx-api/internal/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
 

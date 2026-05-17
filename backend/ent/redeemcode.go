@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/group"
-	"github.com/jiutubaba/fuxi-api/ent/redeemcode"
-	"github.com/jiutubaba/fuxi-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/redeemcode"
+	"github.com/jiutubaba/fx-api/ent/user"
 )
 
 // RedeemCode is the model entity for the RedeemCode schema.

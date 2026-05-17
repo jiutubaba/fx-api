@@ -11,10 +11,10 @@ import (
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/jiutubaba/fuxi-api/ent/account"
-	"github.com/jiutubaba/fuxi-api/ent/accountgroup"
-	"github.com/jiutubaba/fuxi-api/ent/group"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/account"
+	"github.com/jiutubaba/fx-api/ent/accountgroup"
+	"github.com/jiutubaba/fx-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/predicate"
 )
 
 // AccountGroupQuery is the builder for querying AccountGroup entities.

@@ -3,8 +3,8 @@ package middleware
 import (
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/ctxkey"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/ctxkey"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

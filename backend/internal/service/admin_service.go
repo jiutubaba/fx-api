@@ -14,14 +14,14 @@ import (
 	"strings"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/authidentity"
-	"github.com/jiutubaba/fuxi-api/ent/authidentitychannel"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/httpclient"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
-	"github.com/jiutubaba/fuxi-api/internal/util/httputil"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/authidentity"
+	"github.com/jiutubaba/fx-api/ent/authidentitychannel"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
+	"github.com/jiutubaba/fx-api/internal/pkg/httpclient"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fx-api/internal/util/httputil"
 )
 
 // AdminService interface defines admin management operations

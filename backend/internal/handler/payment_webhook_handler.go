@@ -11,8 +11,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

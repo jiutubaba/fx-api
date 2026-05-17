@@ -11,8 +11,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/util/logredact"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/util/logredact"
 )
 
 type OpsSystemLogSinkHealth struct {

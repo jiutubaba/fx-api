@@ -6,8 +6,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 )
 
 type runtimeSettingRepoStub struct {

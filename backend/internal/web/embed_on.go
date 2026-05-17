@@ -15,8 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/server/middleware"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/server/middleware"
 )
 
 const (

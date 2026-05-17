@@ -1,3 +1,11 @@
+# 伏羲API
+
+本仓库是伏羲API的 sub2api 架构迁移仓库，规范远端为 `https://github.com/jiutubaba/fx-api.git`，Go module 为 `github.com/jiutubaba/fx-api`，默认镜像为 `ghcr.io/jiutubaba/fx-api`。
+
+生产与预发部署请优先使用 [deploy/fuxi](deploy/fuxi/README.md)。该目录保留迁移门禁：只新增 `/data/fuxi-api/**`，不删除旧 `new-api`/`new-api-staging` 容器，也不修改 `/data/new-api/**`。
+
+本项目以 [Wei-Shaw/sub2api](https://github.com/Wei-Shaw/sub2api) 为架构基线，保留 LGPLv3 授权和上游来源声明。以下内容为上游 sub2api 文档，仅作为架构与功能参考。
+
 # Sub2API
 
 <div align="center">

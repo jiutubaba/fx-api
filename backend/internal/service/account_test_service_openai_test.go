@@ -15,7 +15,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/tlsfingerprint"
+	"github.com/jiutubaba/fx-api/internal/pkg/tlsfingerprint"
 )
 
 // --- shared test helpers ---

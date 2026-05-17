@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

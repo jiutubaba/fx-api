@@ -9,12 +9,12 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/account"
-	"github.com/jiutubaba/fuxi-api/ent/apikey"
-	"github.com/jiutubaba/fuxi-api/ent/group"
-	"github.com/jiutubaba/fuxi-api/ent/usagelog"
-	"github.com/jiutubaba/fuxi-api/ent/user"
-	"github.com/jiutubaba/fuxi-api/ent/usersubscription"
+	"github.com/jiutubaba/fx-api/ent/account"
+	"github.com/jiutubaba/fx-api/ent/apikey"
+	"github.com/jiutubaba/fx-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/usagelog"
+	"github.com/jiutubaba/fx-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/usersubscription"
 )
 
 // UsageLog is the model entity for the UsageLog schema.

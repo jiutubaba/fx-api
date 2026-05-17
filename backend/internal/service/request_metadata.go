@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync/atomic"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/ctxkey"
+	"github.com/jiutubaba/fx-api/internal/pkg/ctxkey"
 )
 
 type requestMetadataContextKey struct{}

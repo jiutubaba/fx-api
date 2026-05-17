@@ -6,8 +6,8 @@ import (
 	"io"
 	"os/exec"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 // PgDumper implements service.DBDumper using pg_dump/psql

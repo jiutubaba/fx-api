@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/usagestats"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/usagestats"
 )
 
 type geminiModelClass string

@@ -11,10 +11,10 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/identityadoptiondecision"
-	"github.com/jiutubaba/fuxi-api/ent/pendingauthsession"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
-	"github.com/jiutubaba/fuxi-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/identityadoptiondecision"
+	"github.com/jiutubaba/fx-api/ent/pendingauthsession"
+	"github.com/jiutubaba/fx-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/user"
 )
 
 // PendingAuthSessionUpdate is the builder for updating PendingAuthSession entities.

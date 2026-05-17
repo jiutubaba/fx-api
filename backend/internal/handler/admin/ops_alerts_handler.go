@@ -9,11 +9,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	"github.com/jiutubaba/fuxi-api/internal/server/middleware"
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	"github.com/jiutubaba/fx-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 var validOpsAlertMetricTypes = []string{

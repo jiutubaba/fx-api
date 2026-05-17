@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
 	coderws "github.com/coder/websocket"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/stretchr/testify/require"
 )
 

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/domain"
+	"github.com/jiutubaba/fx-api/internal/domain"
 	"github.com/stretchr/testify/require"
 )
 

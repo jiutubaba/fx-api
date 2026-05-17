@@ -10,10 +10,10 @@ import (
 	"sync"
 	"testing"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/enttest"
-	"github.com/jiutubaba/fuxi-api/ent/securitysecret"
-	"github.com/jiutubaba/fuxi-api/internal/config"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/enttest"
+	"github.com/jiutubaba/fx-api/ent/securitysecret"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/stretchr/testify/require"
 
 	"entgo.io/ent/dialect"

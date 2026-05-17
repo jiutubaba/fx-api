@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/geminicli"
+	"github.com/jiutubaba/fx-api/internal/pkg/geminicli"
 )
 
 // GeminiCliCodeAssistClient calls GeminiCli internal Code Assist endpoints.

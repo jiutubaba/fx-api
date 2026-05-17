@@ -8,15 +8,15 @@ package main
 
 import (
 	"context"
-	"github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/handler"
-	"github.com/jiutubaba/fuxi-api/internal/handler/admin"
-	"github.com/jiutubaba/fuxi-api/internal/payment"
-	"github.com/jiutubaba/fuxi-api/internal/repository"
-	"github.com/jiutubaba/fuxi-api/internal/server"
-	"github.com/jiutubaba/fuxi-api/internal/server/middleware"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/handler"
+	"github.com/jiutubaba/fx-api/internal/handler/admin"
+	"github.com/jiutubaba/fx-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/repository"
+	"github.com/jiutubaba/fx-api/internal/server"
+	"github.com/jiutubaba/fx-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"github.com/redis/go-redis/v9"
 	"log"
 	"net/http"
@@ -26,7 +26,7 @@ import (
 
 import (
 	_ "embed"
-	_ "github.com/jiutubaba/fuxi-api/ent/runtime"
+	_ "github.com/jiutubaba/fx-api/ent/runtime"
 )
 
 // Injectors from wire.go:

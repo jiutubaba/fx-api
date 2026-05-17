@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/openai"
+	"github.com/jiutubaba/fx-api/internal/pkg/openai"
 	"github.com/stretchr/testify/require"
 )
 

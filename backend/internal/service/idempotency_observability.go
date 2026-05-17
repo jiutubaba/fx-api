@@ -7,7 +7,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 )
 
 // IdempotencyMetricsSnapshot 提供幂等核心指标快照（进程内累计）。

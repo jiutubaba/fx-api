@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/timezone"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/pkg/timezone"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"github.com/lib/pq"
 )
 

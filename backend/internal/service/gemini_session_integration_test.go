@@ -3,7 +3,7 @@ package service
 import (
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
+	"github.com/jiutubaba/fx-api/internal/pkg/antigravity"
 )
 
 // TestGeminiSessionContinuousConversation 测试连续会话的摘要链匹配

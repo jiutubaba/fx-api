@@ -13,7 +13,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/payment"
 	"github.com/wechatpay-apiv3/wechatpay-go/core"
 	"github.com/wechatpay-apiv3/wechatpay-go/services/payments"
 	"github.com/wechatpay-apiv3/wechatpay-go/services/payments/h5"

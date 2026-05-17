@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/oauth"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/openai"
+	"github.com/jiutubaba/fx-api/internal/pkg/oauth"
+	"github.com/jiutubaba/fx-api/internal/pkg/openai"
 )
 
 // OpenAIOAuthClient interface for OpenAI OAuth operations

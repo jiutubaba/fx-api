@@ -10,9 +10,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/identityadoptiondecision"
-	"github.com/jiutubaba/fuxi-api/ent/pendingauthsession"
-	"github.com/jiutubaba/fuxi-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/identityadoptiondecision"
+	"github.com/jiutubaba/fx-api/ent/pendingauthsession"
+	"github.com/jiutubaba/fx-api/ent/user"
 )
 
 // PendingAuthSession is the model entity for the PendingAuthSession schema.

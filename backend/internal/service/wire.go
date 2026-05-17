@@ -5,12 +5,12 @@ import (
 	"database/sql"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/payment"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
 	"github.com/google/wire"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/pkg/antigravity"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 	"github.com/redis/go-redis/v9"
 )
 

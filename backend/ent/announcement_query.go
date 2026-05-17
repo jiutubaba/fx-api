@@ -13,9 +13,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/announcement"
-	"github.com/jiutubaba/fuxi-api/ent/announcementread"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/announcement"
+	"github.com/jiutubaba/fx-api/ent/announcementread"
+	"github.com/jiutubaba/fx-api/ent/predicate"
 )
 
 // AnnouncementQuery is the builder for querying Announcement entities.

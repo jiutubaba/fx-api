@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/model"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/tlsfingerprint"
+	"github.com/jiutubaba/fx-api/internal/model"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/tlsfingerprint"
 )
 
 // TLSFingerprintProfileRepository 定义 TLS 指纹模板的数据访问接口

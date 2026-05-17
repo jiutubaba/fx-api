@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"github.com/jiutubaba/fuxi-api/ent"
+	"github.com/jiutubaba/fx-api/ent"
 	// required by schema hooks.
-	_ "github.com/jiutubaba/fuxi-api/ent/runtime"
+	_ "github.com/jiutubaba/fx-api/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/jiutubaba/fuxi-api/ent/migrate"
+	"github.com/jiutubaba/fx-api/ent/migrate"
 )
 
 type (

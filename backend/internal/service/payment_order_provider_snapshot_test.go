@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/payment"
 	"github.com/stretchr/testify/require"
 )
 

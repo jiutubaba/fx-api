@@ -9,11 +9,11 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/openai"
-	openaiwsv2 "github.com/jiutubaba/fuxi-api/internal/service/openai_ws_v2"
 	coderws "github.com/coder/websocket"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/openai"
+	openaiwsv2 "github.com/jiutubaba/fx-api/internal/service/openai_ws_v2"
 	"github.com/tidwall/gjson"
 )
 

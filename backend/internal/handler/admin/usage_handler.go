@@ -7,14 +7,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/handler/dto"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/timezone"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/usagestats"
-	"github.com/jiutubaba/fuxi-api/internal/server/middleware"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/handler/dto"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	"github.com/jiutubaba/fx-api/internal/pkg/timezone"
+	"github.com/jiutubaba/fx-api/internal/pkg/usagestats"
+	"github.com/jiutubaba/fx-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

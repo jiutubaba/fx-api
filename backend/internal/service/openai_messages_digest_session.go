@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/apicompat"
+	"github.com/jiutubaba/fx-api/internal/pkg/apicompat"
 )
 
 type openAICompatAnthropicDigestBinding struct {

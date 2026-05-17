@@ -6,9 +6,9 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/geminicli"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/geminicli"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/imroc/req/v3"
 )

@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/announcement"
-	"github.com/jiutubaba/fuxi-api/ent/announcementread"
-	"github.com/jiutubaba/fuxi-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/announcement"
+	"github.com/jiutubaba/fx-api/ent/announcementread"
+	"github.com/jiutubaba/fx-api/ent/user"
 )
 
 // AnnouncementRead is the model entity for the AnnouncementRead schema.

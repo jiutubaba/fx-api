@@ -14,11 +14,11 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect"
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/identityadoptiondecision"
-	"github.com/jiutubaba/fuxi-api/ent/pendingauthsession"
-	dbpredicate "github.com/jiutubaba/fuxi-api/ent/predicate"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/identityadoptiondecision"
+	"github.com/jiutubaba/fx-api/ent/pendingauthsession"
+	dbpredicate "github.com/jiutubaba/fx-api/ent/predicate"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 
 	entsql "entgo.io/ent/dialect/sql"
 )

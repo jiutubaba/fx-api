@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/geminicli"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/httpclient"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/geminicli"
+	"github.com/jiutubaba/fx-api/internal/pkg/httpclient"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
 )
 
 const (

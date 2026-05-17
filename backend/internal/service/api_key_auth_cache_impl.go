@@ -10,8 +10,8 @@ import (
 	"math/rand/v2"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
 	"github.com/dgraph-io/ristretto"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 const apiKeyAuthSnapshotVersion = 9 // v9: added API Key name for audit logs

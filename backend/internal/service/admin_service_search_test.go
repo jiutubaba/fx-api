@@ -6,7 +6,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
 	"github.com/stretchr/testify/require"
 )
 

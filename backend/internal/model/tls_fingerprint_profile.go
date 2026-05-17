@@ -4,7 +4,7 @@ package model
 import (
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/tlsfingerprint"
+	"github.com/jiutubaba/fx-api/internal/pkg/tlsfingerprint"
 )
 
 // TLSFingerprintProfile TLS 指纹配置模板

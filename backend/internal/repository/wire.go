@@ -5,10 +5,10 @@ import (
 	"errors"
 
 	entsql "entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/google/wire"
+	"github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"github.com/redis/go-redis/v9"
 )
 

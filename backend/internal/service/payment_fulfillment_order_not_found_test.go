@@ -12,9 +12,9 @@ import (
 	entsql "entgo.io/ent/dialect/sql"
 	_ "modernc.org/sqlite"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/enttest"
-	"github.com/jiutubaba/fuxi-api/internal/payment"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/enttest"
+	"github.com/jiutubaba/fx-api/internal/payment"
 	"github.com/stretchr/testify/require"
 )
 

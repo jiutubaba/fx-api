@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/ctxkey"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/googleapi"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/pkg/ctxkey"
+	"github.com/jiutubaba/fx-api/internal/pkg/googleapi"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"github.com/gin-gonic/gin"
 )
 

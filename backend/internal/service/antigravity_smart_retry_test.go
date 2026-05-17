@@ -5,7 +5,7 @@ package service
 import (
 	"bytes"
 	"context"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/tlsfingerprint"
+	"github.com/jiutubaba/fx-api/internal/pkg/tlsfingerprint"
 	"github.com/stretchr/testify/require"
 	"io"
 	"net/http"

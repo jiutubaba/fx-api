@@ -7,8 +7,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
 	"github.com/imroc/req/v3"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/stretchr/testify/require"
 )
 

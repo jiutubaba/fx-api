@@ -8,7 +8,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 // ============================================================

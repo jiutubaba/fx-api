@@ -10,8 +10,8 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/jiutubaba/fuxi-api/internal/domain"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
+	"github.com/jiutubaba/fx-api/internal/domain"
+	"github.com/jiutubaba/fx-api/internal/pkg/antigravity"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )

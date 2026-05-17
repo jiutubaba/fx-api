@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/usagestats"
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	"github.com/jiutubaba/fx-api/internal/pkg/usagestats"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 var dashboardSnapshotV2Cache = newSnapshotCache(30 * time.Second)

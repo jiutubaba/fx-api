@@ -11,9 +11,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/websearch"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/jiutubaba/fx-api/internal/pkg/websearch"
 	"github.com/tidwall/gjson"
 )
 

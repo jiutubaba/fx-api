@@ -2,4 +2,4 @@
 
 package ent
 
-// The schema-stitching logic is generated in github.com/jiutubaba/fuxi-api/ent/runtime/runtime.go
+// The schema-stitching logic is generated in github.com/jiutubaba/fx-api/ent/runtime/runtime.go

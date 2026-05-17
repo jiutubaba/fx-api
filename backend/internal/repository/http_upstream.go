@@ -17,12 +17,12 @@ import (
 
 	"github.com/andybalholm/brotli"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyurl"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyutil"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/tlsfingerprint"
-	"github.com/jiutubaba/fuxi-api/internal/service"
-	"github.com/jiutubaba/fuxi-api/internal/util/urlvalidator"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyurl"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyutil"
+	"github.com/jiutubaba/fx-api/internal/pkg/tlsfingerprint"
+	"github.com/jiutubaba/fx-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/util/urlvalidator"
 )
 
 // 默认配置常量

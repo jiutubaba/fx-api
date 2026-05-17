@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/timezone"
-	"github.com/jiutubaba/fuxi-api/migrations"
+	"github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/timezone"
+	"github.com/jiutubaba/fx-api/migrations"
 
 	"entgo.io/ent/dialect"
 	entsql "entgo.io/ent/dialect/sql"

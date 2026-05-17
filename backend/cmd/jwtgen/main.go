@@ -7,10 +7,10 @@ import (
 	"log"
 	"time"
 
-	_ "github.com/jiutubaba/fuxi-api/ent/runtime"
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/repository"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	_ "github.com/jiutubaba/fx-api/ent/runtime"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/repository"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 func main() {

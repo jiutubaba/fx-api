@@ -3,7 +3,7 @@ package repository
 import (
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/pagination"
+	"github.com/jiutubaba/fx-api/internal/pkg/pagination"
 )
 
 func TestAnnouncementListOrder(t *testing.T) {

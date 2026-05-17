@@ -12,11 +12,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/apicompat"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/claude"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/util/responseheaders"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/pkg/apicompat"
+	"github.com/jiutubaba/fx-api/internal/pkg/claude"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/util/responseheaders"
 	"github.com/tidwall/gjson"
 	"go.uber.org/zap"
 )

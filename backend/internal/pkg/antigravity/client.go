@@ -15,8 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyurl"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyutil"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyurl"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyutil"
 )
 
 // ForbiddenError 表示上游返回 403 Forbidden

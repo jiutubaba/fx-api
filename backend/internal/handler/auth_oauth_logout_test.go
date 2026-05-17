@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/ent/pendingauthsession"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/ent/pendingauthsession"
 	"github.com/stretchr/testify/require"
 )
 

@@ -12,8 +12,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/stretchr/testify/require"
 	"github.com/tidwall/gjson"
 )

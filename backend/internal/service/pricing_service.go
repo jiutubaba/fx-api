@@ -13,10 +13,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/openai"
-	"github.com/jiutubaba/fuxi-api/internal/util/urlvalidator"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/openai"
+	"github.com/jiutubaba/fx-api/internal/util/urlvalidator"
 	"go.uber.org/zap"
 )
 

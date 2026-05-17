@@ -8,12 +8,12 @@ import (
 	"strings"
 	"time"
 
-	pkghttputil "github.com/jiutubaba/fuxi-api/internal/pkg/httputil"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/ip"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	middleware2 "github.com/jiutubaba/fuxi-api/internal/server/middleware"
-	"github.com/jiutubaba/fuxi-api/internal/service"
 	"github.com/gin-gonic/gin"
+	pkghttputil "github.com/jiutubaba/fx-api/internal/pkg/httputil"
+	"github.com/jiutubaba/fx-api/internal/pkg/ip"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	middleware2 "github.com/jiutubaba/fx-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/service"
 	"go.uber.org/zap"
 )
 

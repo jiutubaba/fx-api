@@ -6,9 +6,9 @@ import (
 	"log/slog"
 	"strings"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/internal/config"
 	"github.com/google/wire"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 // EncryptionKey is a named type for the payment encryption key (AES-256, 32 bytes).

@@ -15,9 +15,9 @@ import (
 	"testing"
 	"time"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	_ "github.com/jiutubaba/fuxi-api/ent/runtime"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/timezone"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	_ "github.com/jiutubaba/fx-api/ent/runtime"
+	"github.com/jiutubaba/fx-api/internal/pkg/timezone"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 

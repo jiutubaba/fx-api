@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
 

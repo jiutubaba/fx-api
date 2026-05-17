@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/jiutubaba/fuxi-api/ent/schema/mixins"
+	"github.com/jiutubaba/fx-api/ent/schema/mixins"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/entsql"

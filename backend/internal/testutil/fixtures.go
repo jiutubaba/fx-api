@@ -5,7 +5,7 @@ package testutil
 import (
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 // NewTestUser 创建一个可用的测试用户，可通过 opts 覆盖默认值。

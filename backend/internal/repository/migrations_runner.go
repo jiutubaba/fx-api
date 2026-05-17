@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/migrations"
+	"github.com/jiutubaba/fx-api/migrations"
 )
 
 // schemaMigrationsTableDDL 定义迁移记录表的 DDL。

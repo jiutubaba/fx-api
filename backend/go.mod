@@ -1,4 +1,4 @@
-module github.com/jiutubaba/fuxi-api
+module github.com/jiutubaba/fx-api
 
 go 1.26.3
 

@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/identityadoptiondecision"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/identityadoptiondecision"
+	"github.com/jiutubaba/fx-api/ent/predicate"
 )
 
 // IdentityAdoptionDecisionDelete is the builder for deleting a IdentityAdoptionDecision entity.

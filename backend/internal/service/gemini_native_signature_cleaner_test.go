@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
+	"github.com/jiutubaba/fx-api/internal/pkg/antigravity"
 	"github.com/stretchr/testify/require"
 )
 

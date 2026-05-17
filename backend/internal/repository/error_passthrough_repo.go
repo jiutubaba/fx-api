@@ -3,10 +3,10 @@ package repository
 import (
 	"context"
 
-	"github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/errorpassthroughrule"
-	"github.com/jiutubaba/fuxi-api/internal/model"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/errorpassthroughrule"
+	"github.com/jiutubaba/fx-api/internal/model"
+	"github.com/jiutubaba/fx-api/internal/service"
 )
 
 type errorPassthroughRepository struct {

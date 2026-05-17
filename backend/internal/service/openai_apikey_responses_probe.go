@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/logger"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/openai"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/openai_compat"
+	"github.com/jiutubaba/fx-api/internal/pkg/logger"
+	"github.com/jiutubaba/fx-api/internal/pkg/openai"
+	"github.com/jiutubaba/fx-api/internal/pkg/openai_compat"
 )
 
 // openaiResponsesProbeTimeout 是探测请求的超时时长。

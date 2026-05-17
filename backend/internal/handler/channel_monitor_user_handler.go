@@ -3,10 +3,10 @@ package handler
 import (
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/handler/admin"
-	"github.com/jiutubaba/fuxi-api/internal/handler/dto"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/response"
-	"github.com/jiutubaba/fuxi-api/internal/service"
+	"github.com/jiutubaba/fx-api/internal/handler/admin"
+	"github.com/jiutubaba/fx-api/internal/handler/dto"
+	"github.com/jiutubaba/fx-api/internal/pkg/response"
+	"github.com/jiutubaba/fx-api/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

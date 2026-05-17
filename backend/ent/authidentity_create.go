@@ -11,10 +11,10 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/jiutubaba/fuxi-api/ent/authidentity"
-	"github.com/jiutubaba/fuxi-api/ent/authidentitychannel"
-	"github.com/jiutubaba/fuxi-api/ent/identityadoptiondecision"
-	"github.com/jiutubaba/fuxi-api/ent/user"
+	"github.com/jiutubaba/fx-api/ent/authidentity"
+	"github.com/jiutubaba/fx-api/ent/authidentitychannel"
+	"github.com/jiutubaba/fx-api/ent/identityadoptiondecision"
+	"github.com/jiutubaba/fx-api/ent/user"
 )
 
 // AuthIdentityCreate is the builder for creating a AuthIdentity entity.

@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/handler"
-	servermiddleware "github.com/jiutubaba/fuxi-api/internal/server/middleware"
+	"github.com/jiutubaba/fx-api/internal/handler"
+	servermiddleware "github.com/jiutubaba/fx-api/internal/server/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/require"

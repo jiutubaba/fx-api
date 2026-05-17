@@ -13,10 +13,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/tlsfingerprint"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/pkg/antigravity"
+	"github.com/jiutubaba/fx-api/internal/pkg/tlsfingerprint"
 	"github.com/stretchr/testify/require"
 )
 

@@ -15,8 +15,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
 	"github.com/google/uuid"
+	"github.com/jiutubaba/fx-api/internal/payment"
 	"github.com/shopspring/decimal"
 )
 

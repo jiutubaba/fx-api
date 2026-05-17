@@ -3,7 +3,7 @@ package payment
 import (
 	"sync"
 
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 )
 
 // Registry is a thread-safe registry mapping PaymentType to Provider.

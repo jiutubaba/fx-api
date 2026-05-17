@@ -9,9 +9,9 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/jiutubaba/fuxi-api/ent/account"
-	"github.com/jiutubaba/fuxi-api/ent/accountgroup"
-	"github.com/jiutubaba/fuxi-api/ent/group"
+	"github.com/jiutubaba/fx-api/ent/account"
+	"github.com/jiutubaba/fx-api/ent/accountgroup"
+	"github.com/jiutubaba/fx-api/ent/group"
 )
 
 // AccountGroup is the model entity for the AccountGroup schema.

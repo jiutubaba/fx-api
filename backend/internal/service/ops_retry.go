@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/domain"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
 	"github.com/gin-gonic/gin"
+	"github.com/jiutubaba/fx-api/internal/domain"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 	"github.com/lib/pq"
 )
 

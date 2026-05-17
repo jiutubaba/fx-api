@@ -15,7 +15,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyutil"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyutil"
 	"github.com/redis/go-redis/v9"
 )
 

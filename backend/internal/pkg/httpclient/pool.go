@@ -23,9 +23,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyurl"
-	"github.com/jiutubaba/fuxi-api/internal/pkg/proxyutil"
-	"github.com/jiutubaba/fuxi-api/internal/util/urlvalidator"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyurl"
+	"github.com/jiutubaba/fx-api/internal/pkg/proxyutil"
+	"github.com/jiutubaba/fx-api/internal/util/urlvalidator"
 )
 
 // Transport 连接池默认配置

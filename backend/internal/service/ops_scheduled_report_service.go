@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
 	"github.com/google/uuid"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/redis/go-redis/v9"
 	"github.com/robfig/cron/v3"
 )

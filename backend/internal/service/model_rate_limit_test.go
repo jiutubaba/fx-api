@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/ctxkey"
+	"github.com/jiutubaba/fx-api/internal/pkg/ctxkey"
 )
 
 func TestIsModelRateLimited(t *testing.T) {

@@ -7,8 +7,8 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/jiutubaba/fuxi-api/ent/accountgroup"
-	"github.com/jiutubaba/fuxi-api/ent/predicate"
+	"github.com/jiutubaba/fx-api/ent/accountgroup"
+	"github.com/jiutubaba/fx-api/ent/predicate"
 )
 
 // AccountGroupDelete is the builder for deleting a AccountGroup entity.

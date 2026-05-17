@@ -6,7 +6,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/stretchr/testify/require"
 )
 

@@ -3,7 +3,7 @@ package service
 import (
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/antigravity"
+	"github.com/jiutubaba/fx-api/internal/pkg/antigravity"
 )
 
 func TestShortHash(t *testing.T) {

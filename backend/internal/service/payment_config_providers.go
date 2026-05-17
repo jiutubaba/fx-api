@@ -8,12 +8,12 @@ import (
 	"strconv"
 	"strings"
 
-	dbent "github.com/jiutubaba/fuxi-api/ent"
-	"github.com/jiutubaba/fuxi-api/ent/paymentorder"
-	"github.com/jiutubaba/fuxi-api/ent/paymentproviderinstance"
-	"github.com/jiutubaba/fuxi-api/internal/payment"
-	"github.com/jiutubaba/fuxi-api/internal/payment/provider"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	dbent "github.com/jiutubaba/fx-api/ent"
+	"github.com/jiutubaba/fx-api/ent/paymentorder"
+	"github.com/jiutubaba/fx-api/ent/paymentproviderinstance"
+	"github.com/jiutubaba/fx-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/payment/provider"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 )
 
 // validateProviderConfig runs the provider's constructor to surface config-level

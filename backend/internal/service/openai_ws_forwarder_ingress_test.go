@@ -8,8 +8,8 @@ import (
 	"net"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
 	coderws "github.com/coder/websocket"
+	"github.com/jiutubaba/fx-api/internal/config"
 	"github.com/stretchr/testify/require"
 	"github.com/tidwall/gjson"
 )

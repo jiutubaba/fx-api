@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/jiutubaba/fuxi-api/internal/pkg/claude"
+	"github.com/jiutubaba/fx-api/internal/pkg/claude"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )

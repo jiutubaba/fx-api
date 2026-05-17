@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
-	infraerrors "github.com/jiutubaba/fuxi-api/internal/pkg/errors"
+	"github.com/jiutubaba/fx-api/internal/config"
+	infraerrors "github.com/jiutubaba/fx-api/internal/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
 

@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jiutubaba/fuxi-api/internal/payment"
+	"github.com/jiutubaba/fx-api/internal/payment"
 	"github.com/smartwalle/alipay/v3"
 )
 

@@ -8,7 +8,7 @@
 2. 执行：
 
 ```bash
-sudo IMAGE=ghcr.io/jiutubaba/fuxi-api:latest ./deploy-staging.sh
+sudo IMAGE=ghcr.io/jiutubaba/fx-api:latest ./deploy-staging.sh
 ```
 
 预发容器名为 `fuxi-api-staging`，宿主机只绑定 `127.0.0.1:3200`。
@@ -19,7 +19,7 @@ sudo IMAGE=ghcr.io/jiutubaba/fuxi-api:latest ./deploy-staging.sh
 2. 执行：
 
 ```bash
-sudo IMAGE=ghcr.io/jiutubaba/fuxi-api:latest ./prepare-prod.sh
+sudo IMAGE=ghcr.io/jiutubaba/fx-api:latest ./prepare-prod.sh
 ```
 
 生产准备容器名为 `fuxi-api-prod`，默认只绑定 `127.0.0.1:3300`，不会切换公网流量。

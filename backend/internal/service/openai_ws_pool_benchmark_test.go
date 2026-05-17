@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/jiutubaba/fuxi-api/internal/config"
+	"github.com/jiutubaba/fx-api/internal/config"
 )
 
 func BenchmarkOpenAIWSPoolAcquire(b *testing.B) {
