@@ -170,6 +170,28 @@
             {{ t('admin.accounts.listPendingSyncAction') }}
           </button>
         </div>
+        <div class="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <div
+            v-for="item in accountSummaryCards"
+            :key="item.key"
+            class="rounded-lg border border-gray-200 bg-white px-4 py-3 shadow-sm dark:border-dark-700 dark:bg-dark-800"
+          >
+            <div class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+              {{ item.label }}
+            </div>
+            <div class="mt-1 flex items-end justify-between gap-3">
+              <span class="text-2xl font-semibold tabular-nums text-gray-900 dark:text-white">
+                {{ item.value }}
+              </span>
+              <span
+                v-if="item.hint"
+                class="mb-1 text-xs text-gray-400 dark:text-gray-500"
+              >
+                {{ item.hint }}
+              </span>
+            </div>
+          </div>
+        </div>
       </template>
       <template #table>
         <AccountBulkActionsBar
@@ -410,7 +432,7 @@ import Icon from '@/components/icons/Icon.vue'
 import ErrorPassthroughRulesModal from '@/components/admin/ErrorPassthroughRulesModal.vue'
 import TLSFingerprintProfilesModal from '@/components/admin/TLSFingerprintProfilesModal.vue'
 import { buildOpenAIUsageRefreshKey } from '@/utils/accountUsageRefresh'
-import { formatDateTime, formatRelativeTime } from '@/utils/format'
+import { formatDateTime, formatNumber, formatRelativeTime } from '@/utils/format'
 import type { Account, AccountPlatform, AccountType, Proxy as AccountProxy, AdminGroup, WindowStats, ClaudeModel } from '@/types'
 
 const { t } = useI18n()
@@ -749,6 +771,40 @@ const {
 } = useTableSelection<Account>({
   rows: accounts,
   getId: (account) => account.id
+})
+
+const accountSummaryCards = computed(() => {
+  const rows = accounts.value
+  const active = rows.filter(account => account.status === 'active').length
+  const schedulable = rows.filter(account => account.status === 'active' && account.schedulable).length
+  const unavailable = rows.filter(account => account.status !== 'active').length
+
+  return [
+    {
+      key: 'total',
+      label: t('admin.accounts.poolStats.total'),
+      value: formatNumber(pagination.total || 0),
+      hint: ''
+    },
+    {
+      key: 'pageActive',
+      label: t('admin.accounts.poolStats.pageActive'),
+      value: formatNumber(active),
+      hint: t('admin.accounts.poolStats.pageScope')
+    },
+    {
+      key: 'pageSchedulable',
+      label: t('admin.accounts.poolStats.pageSchedulable'),
+      value: formatNumber(schedulable),
+      hint: t('admin.accounts.poolStats.pageScope')
+    },
+    {
+      key: 'pageUnavailable',
+      label: t('admin.accounts.poolStats.pageUnavailable'),
+      value: formatNumber(unavailable),
+      hint: t('admin.accounts.poolStats.pageScope')
+    }
+  ]
 })
 
 const swipeVirtualContext: SwipeSelectVirtualContext = {

@@ -143,6 +143,10 @@ func (h *AvailableChannelHandler) List(c *gin.Context) {
 		return
 	}
 
+	if len(channels) == 0 && len(userGroups) > 0 {
+		channels = fallbackAvailableChannelsFromGroups(userGroups)
+	}
+
 	out := make([]userAvailableChannel, 0, len(channels))
 	for _, ch := range channels {
 		if ch.Status != service.StatusActive {
@@ -164,6 +168,41 @@ func (h *AvailableChannelHandler) List(c *gin.Context) {
 	}
 
 	response.Success(c, out)
+}
+
+func fallbackAvailableChannelsFromGroups(groups []service.Group) []service.AvailableChannel {
+	refs := make([]service.AvailableGroupRef, 0, len(groups))
+	for i := range groups {
+		g := groups[i]
+		if g.Status != service.StatusActive || g.Platform == "" {
+			continue
+		}
+		refs = append(refs, service.AvailableGroupRef{
+			ID:               g.ID,
+			Name:             g.Name,
+			Platform:         g.Platform,
+			SubscriptionType: g.SubscriptionType,
+			RateMultiplier:   g.RateMultiplier,
+			IsExclusive:      g.IsExclusive,
+		})
+	}
+	if len(refs) == 0 {
+		return nil
+	}
+	sort.SliceStable(refs, func(i, j int) bool {
+		if refs[i].Platform == refs[j].Platform {
+			return refs[i].Name < refs[j].Name
+		}
+		return refs[i].Platform < refs[j].Platform
+	})
+	return []service.AvailableChannel{{
+		Name:               "账号池",
+		Description:        "基于当前账号池和可访问分组生成",
+		Status:             service.StatusActive,
+		BillingModelSource: service.BillingModelSourceChannelMapped,
+		Groups:             refs,
+		SupportedModels:    []service.SupportedModel{},
+	}}
 }
 
 // buildPlatformSections 把一个渠道按 visibleGroups 的平台集合拆成有序的 section 列表：

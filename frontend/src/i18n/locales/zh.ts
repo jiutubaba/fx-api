@@ -934,6 +934,7 @@ export default {
     overall: {
       operational: 'OPERATIONAL',
       degraded: 'DEGRADED',
+      unmonitored: 'UNMONITORED',
       unavailable: 'UNAVAILABLE'
     },
     columns: {
@@ -956,6 +957,10 @@ export default {
     empty: {
       title: '暂无可显示的渠道',
       description: '管理员尚未配置可监控的渠道。'
+    },
+    accountPoolFallback: {
+      primaryModel: '未配置检测',
+      groupCount: '{count} 个分组'
     }
   },
 
@@ -2933,6 +2938,13 @@ export default {
       schedulableDisabled: '调度已关闭',
       failedToToggleSchedulable: '切换调度状态失败',
       groupCountTotal: '共 {count} 个分组',
+      poolStats: {
+        total: '账号',
+        pageActive: '本页启用',
+        pageSchedulable: '本页可调度',
+        pageUnavailable: '本页异常/停用',
+        pageScope: '本页'
+      },
       columns: {
         name: '名称',
         platformType: '平台/类型',

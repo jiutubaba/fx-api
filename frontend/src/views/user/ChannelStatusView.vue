@@ -39,6 +39,7 @@ import {
   type UserMonitorView,
   type UserMonitorDetail,
 } from '@/api/channelMonitor'
+import userChannelsAPI, { type UserAvailableChannel } from '@/api/channels'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import MonitorHero, {
   type MonitorWindow,
@@ -74,6 +75,7 @@ const countdown = autoRefresh.countdown
 // ── Computed ──
 const overallStatus = computed<OverallStatus>(() => {
   if (items.value.length === 0) return 'operational'
+  if (items.value.every(isFallbackMonitor)) return 'unmonitored'
   for (const it of items.value) {
     if (it.primary_status === 'failed' || it.primary_status === 'error') return 'degraded'
     if (it.primary_status !== STATUS_OPERATIONAL) return 'degraded'
@@ -94,7 +96,8 @@ async function reload(silent = false) {
   try {
     const res = await listChannelMonitorViews({ signal: ctrl.signal })
     if (ctrl.signal.aborted || abortController !== ctrl) return
-    items.value = res.items || []
+    const monitorItems = res.items || []
+    items.value = monitorItems.length > 0 ? monitorItems : await buildAccountPoolStatusFallback(ctrl.signal)
   } catch (err: unknown) {
     const e = err as { name?: string; code?: string }
     if (e?.name === 'AbortError' || e?.code === 'ERR_CANCELED') return
@@ -138,6 +141,7 @@ async function handleWindowChange(value: MonitorWindow) {
 }
 
 function openDetail(row: UserMonitorView) {
+  if (isFallbackMonitor(row)) return
   detailTarget.value = row
   showDetail.value = true
 }
@@ -150,6 +154,65 @@ function closeDetail() {
 watch(items, () => {
   void ensureDetailsForWindow()
 })
+
+function isFallbackMonitor(row: UserMonitorView): boolean {
+  return row.synthetic === true || row.id < 0
+}
+
+async function buildAccountPoolStatusFallback(signal: AbortSignal): Promise<UserMonitorView[]> {
+  const channels = await userChannelsAPI.getAvailable({ signal })
+  if (signal.aborted) return []
+  const rows: UserMonitorView[] = []
+  let nextID = -1
+
+  for (const channel of channels) {
+    for (const section of channel.platforms) {
+      rows.push({
+        id: nextID,
+        name: `${channel.name} · ${providerLabel(section.platform)}`,
+        provider: monitorProviderFromPlatform(section.platform),
+        group_name: groupSummary(section),
+        primary_model: t('channelStatus.accountPoolFallback.primaryModel'),
+        primary_status: '',
+        primary_latency_ms: null,
+        primary_ping_latency_ms: null,
+        availability_7d: null,
+        extra_models: [],
+        timeline: [],
+        synthetic: true,
+      })
+      nextID -= 1
+    }
+  }
+
+  return rows
+}
+
+function monitorProviderFromPlatform(platform: string): UserMonitorView['provider'] {
+  if (platform === 'anthropic' || platform === 'gemini') return platform
+  return 'openai'
+}
+
+function providerLabel(platform: string): string {
+  switch (platform) {
+    case 'anthropic':
+      return 'Anthropic'
+    case 'gemini':
+      return 'Gemini'
+    case 'antigravity':
+      return 'Antigravity'
+    case 'openai':
+      return 'OpenAI'
+    default:
+      return platform || '-'
+  }
+}
+
+function groupSummary(section: UserAvailableChannel['platforms'][number]): string {
+  if (section.groups.length === 0) return ''
+  if (section.groups.length === 1) return section.groups[0].name
+  return t('channelStatus.accountPoolFallback.groupCount', { count: section.groups.length })
+}
 
 watch(
   () => appStore.cachedPublicSettings?.channel_monitor_enabled,

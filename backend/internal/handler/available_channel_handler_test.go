@@ -155,3 +155,21 @@ func TestBuildPlatformSections_GroupsByPlatform(t *testing.T) {
 	require.Len(t, sections[0].SupportedModels, 1)
 	require.Equal(t, "claude-sonnet-4-6", sections[0].SupportedModels[0].Name)
 }
+
+func TestFallbackAvailableChannelsFromGroups(t *testing.T) {
+	channels := fallbackAvailableChannelsFromGroups([]service.Group{
+		{ID: 3, Name: "disabled", Platform: "openai", Status: service.StatusDisabled},
+		{ID: 2, Name: "plus", Platform: "openai", Status: service.StatusActive, RateMultiplier: 1.2},
+		{ID: 1, Name: "free", Platform: "openai", Status: service.StatusActive},
+		{ID: 4, Name: "empty-platform", Status: service.StatusActive},
+	})
+
+	require.Len(t, channels, 1)
+	require.Equal(t, "账号池", channels[0].Name)
+	require.Equal(t, service.StatusActive, channels[0].Status)
+	require.Empty(t, channels[0].SupportedModels)
+	require.Len(t, channels[0].Groups, 2)
+	require.Equal(t, int64(1), channels[0].Groups[0].ID)
+	require.Equal(t, int64(2), channels[0].Groups[1].ID)
+	require.Equal(t, 1.2, channels[0].Groups[1].RateMultiplier)
+}

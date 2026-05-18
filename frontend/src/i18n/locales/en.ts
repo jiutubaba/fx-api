@@ -930,6 +930,7 @@ export default {
     overall: {
       operational: 'OPERATIONAL',
       degraded: 'DEGRADED',
+      unmonitored: 'UNMONITORED',
       unavailable: 'UNAVAILABLE'
     },
     columns: {
@@ -952,6 +953,10 @@ export default {
     empty: {
       title: 'No channels available',
       description: 'No monitored channels have been configured yet.'
+    },
+    accountPoolFallback: {
+      primaryModel: 'Monitoring not configured',
+      groupCount: '{count} groups'
     }
   },
 
@@ -2856,6 +2861,13 @@ export default {
       schedulableDisabled: 'Scheduling disabled',
       failedToToggleSchedulable: 'Failed to toggle scheduling status',
       groupCountTotal: '{count} groups total',
+      poolStats: {
+        total: 'Accounts',
+        pageActive: 'Page Active',
+        pageSchedulable: 'Page Schedulable',
+        pageUnavailable: 'Page Error/Disabled',
+        pageScope: 'Page'
+      },
       platforms: {
         anthropic: 'Anthropic',
         claude: 'Claude',
