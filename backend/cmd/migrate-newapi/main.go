@@ -516,6 +516,7 @@ func transformCoreData(ctx context.Context, db *sql.DB, opts options) ([]transfo
 		{"account_pool_accounts", []string{"account_pool_accounts"}, migrateAccountPoolAccountsSQL},
 		{"account_groups", []string{"channels"}, migrateAccountGroupsSQL},
 		{"account_pool_account_groups", []string{"account_pool_accounts", "account_pool_group_bindings"}, migrateAccountPoolAccountGroupsSQL},
+		{"auto_group_account_groups", []string{"options"}, migrateAutoGroupAccountGroupsSQL},
 		{"redeem_codes", []string{"redemptions"}, migrateRedeemCodesSQL},
 		{"usage_logs", []string{"logs"}, migrateUsageLogsSQL},
 		{"payment_orders", []string{"top_ups"}, migratePaymentOrdersSQL},
@@ -939,7 +940,7 @@ SELECT
   1.0,
   false,
   'active',
-  COALESCE(rgp.platform, 'anthropic'),
+  COALESCE(rgp.platform, 'openai'),
   'standard',
   NOW(),
   NOW()
@@ -1364,6 +1365,68 @@ FROM bound_groups bg
 JOIN accounts a ON a.id = bg.account_id
 JOIN groups g ON g.name = COALESCE(bg.group_name, 'default') AND g.deleted_at IS NULL
 GROUP BY bg.account_id, g.id
+ON CONFLICT (account_id, group_id) DO UPDATE SET priority = EXCLUDED.priority`
+
+const migrateAutoGroupAccountGroupsSQL = `
+WITH auto_names AS (
+  SELECT NULLIF(btrim(value), '') AS name
+  FROM jsonb_array_elements_text(public.fuxi_migrate_safe_jsonb(
+    (SELECT value FROM legacy_newapi.options WHERE key = 'AutoGroups' LIMIT 1),
+    '[]'::jsonb
+  ))
+),
+auto_source_bindings AS (
+  SELECT DISTINCT ag.account_id, ag.priority
+  FROM auto_names n
+  JOIN groups g ON g.name = n.name AND g.deleted_at IS NULL
+  JOIN account_groups ag ON ag.group_id = g.id
+  WHERE n.name IS NOT NULL
+),
+auto_target AS (
+  SELECT id
+  FROM groups
+  WHERE name = 'auto' AND deleted_at IS NULL
+),
+auto_bindings AS (
+  SELECT asb.account_id, at.id AS group_id, MIN(asb.priority) AS priority
+  FROM auto_source_bindings asb
+  CROSS JOIN auto_target at
+  GROUP BY asb.account_id, at.id
+),
+fallback_accounts AS (
+  SELECT DISTINCT ag.account_id, ag.priority
+  FROM account_groups ag
+  JOIN accounts a ON a.id = ag.account_id
+  WHERE a.platform = 'openai'
+    AND a.status = 'active'
+    AND a.schedulable = true
+    AND a.deleted_at IS NULL
+),
+empty_openai_key_groups AS (
+  SELECT g.id
+  FROM groups g
+  JOIN api_keys k ON k.group_id = g.id AND k.status = 'active' AND k.deleted_at IS NULL
+  LEFT JOIN account_groups ag ON ag.group_id = g.id
+  WHERE g.platform = 'openai'
+    AND g.deleted_at IS NULL
+  GROUP BY g.id
+  HAVING COUNT(ag.account_id) = 0
+),
+fallback_bindings AS (
+  SELECT fa.account_id, eg.id AS group_id, MIN(fa.priority) AS priority
+  FROM fallback_accounts fa
+  CROSS JOIN empty_openai_key_groups eg
+  GROUP BY fa.account_id, eg.id
+),
+all_bindings AS (
+  SELECT account_id, group_id, priority FROM auto_bindings
+  UNION ALL
+  SELECT account_id, group_id, priority FROM fallback_bindings
+)
+INSERT INTO account_groups (account_id, group_id, priority, created_at)
+SELECT account_id, group_id, MIN(priority), NOW()
+FROM all_bindings
+GROUP BY account_id, group_id
 ON CONFLICT (account_id, group_id) DO UPDATE SET priority = EXCLUDED.priority`
 
 const migrateRedeemCodesSQL = `
