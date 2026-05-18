@@ -10,7 +10,7 @@ Last updated: 2026-05-18
 - Old `new-api` and `new-api-staging` containers remain running and preserved for rollback.
 - Old `/data/new-api/**` and local `F:\newAPI` are preserved backup and legacy reference sources.
 - Latest repository commit at cutover: `a8dbd12b Configure fuxi proxy runtime defaults`.
-- Latest production follow-up commit: `33c5e36c Record production release sync verification`.
+- Latest production follow-up commit: `321f1f31 Record production API key prefix normalization`.
 - Post-cutover cleanup boundary: old `new-api`, `new-api-staging`, `/data/new-api/**`, and local `F:\newAPI` are protected rollback/backup resources, not disposable residue.
 - Production candidate image verified after cutover: `sha256:59879147153e0714e6eaf5df61f4c51168d6a9d65b24d3ab8388a479d66b714e`.
 - Caddy backup from cutover: `/etc/caddy/Caddyfile.bak.20260518-062510`.
@@ -39,6 +39,11 @@ Last updated: 2026-05-18
 - GET `https://fuxiapi.top/api/status`: 200. Use GET for this endpoint; HEAD is not registered by Gin for the route.
 - GET `https://fuxiapi.top/health`: 200.
 - Old `/data/new-api`, `new-api`, and `new-api-staging` were reconfirmed present after the follow-up deploy and remain intentionally preserved.
+- Local release candidate `0.1.127` prepared at 2026-05-18 19:52 +08:00 with admin account-table resizable columns. This is repository-side release prep only; production has not yet been updated to this version in the current session.
+- Admin account table now supports drag-resizing headers, fixed persisted column widths via `localStorage` key `account-column-widths`, and protected selection column width.
+- Legacy `F:\newAPI` AI architecture was rechecked on 2026-05-18. Current project now has the migrated governance pieces that were missing: `tools/check_ai_docs.py`, `tools/MANIFEST.md`, `.ai/assistant_guide.md`, router `last_verified` schema, generated runtime/AI-doc snapshots, and explicit release-closure semantics.
+- Active meaning of `更新发布版并归档`: bump semantic version patch by default, run relevant local verification, commit/push release-prep when ready, update `.ai/MEMORY.md` + `.ai/sessions.md` + `.ai/archive/sessions/`, and deploy staging/production only when that environment update is explicitly confirmed.
+- Root agent entries `AGENTS.md` and `CLAUDE.md` now point to `.ai/assistant_guide.md`, `tools/check_ai_docs.py`, and the release-closure meaning of `更新发布版并归档`.
 
 ## Active Rollback
 
@@ -57,6 +62,8 @@ CONFIRM_SWITCH=fuxiapi.top NEW_TARGET=127.0.0.1:3000 /data/fuxi-api/deploy/switc
 - `870e51b4 Archive account visibility follow-up`
 - `a0177bcb Document post-cutover release sync`
 - `33c5e36c Record production release sync verification`
+- `0da8c375 Record production update to latest release`
+- `321f1f31 Record production API key prefix normalization`
 
 ## Current Risks
 
@@ -69,3 +76,5 @@ CONFIRM_SWITCH=fuxiapi.top NEW_TARGET=127.0.0.1:3000 /data/fuxi-api/deploy/switc
 - Existing clients must update API keys to include the new `sk-` prefix; unprefixed API keys now intentionally fail authentication.
 - GitHub CI for `33c5e36c` recorded a failed backend `test` job with only `exit code 2` visible via public annotations; local `go test ./...`, `make test-unit`, frontend `typecheck`, and frontend `lint:check` passed before publishing, and GHCR Image/Security Scan were successful.
 - Deleting or overwriting old rollback resources still requires a future project rule change; current rules prohibit it.
+- `0.1.127` is prepared locally but not yet tagged, pushed, or deployed to production from this session.
+- AI docs health check passed after migration: `python tools/check_ai_docs.py --summary --details` reported 0 failures and 0 warnings; context recall passed for `backend/cmd/server/VERSION`, `frontend/src/views/admin/AccountsView.vue`, and `deploy/fuxi/deploy-staging.sh`.

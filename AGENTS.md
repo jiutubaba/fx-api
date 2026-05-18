@@ -16,10 +16,20 @@ Project-local AI working docs live under `.ai/`.
 
 - Start with `.ai/README.md`.
 - Path routing source: `.ai/router.md`.
+- Execution and release-closure guide: `.ai/assistant_guide.md`.
 - Current hot state: `.ai/MEMORY.md`.
 - Recent session archive: `.ai/sessions.md` and `.ai/archive/sessions/`.
+- AI docs health check: `python tools/check_ai_docs.py --summary --details`.
 
 The old `F:\newAPI` AI documentation was migrated as a legacy reference model only. It is not authoritative for this repository's architecture.
+
+When the user says "更新发布版并归档", treat it as a release-version closure workflow:
+
+1. Bump the patch version by default in `backend/cmd/server/VERSION`.
+2. Run relevant verification for touched areas.
+3. Commit and push release-prep changes when ready.
+4. Update `.ai/MEMORY.md`, `.ai/sessions.md`, and `.ai/archive/sessions/`.
+5. Deploy staging or production only when that environment update is explicitly confirmed.
 
 ## Tech Stack
 
@@ -68,5 +78,10 @@ npx pnpm --dir frontend run typecheck
 npx pnpm --dir frontend run lint:check
 ```
 
-Deployment verification must include `/api/status`, authenticated `/v1/models`, and at least one real `/v1/chat/completions` path for active groups.
+AI docs:
 
+```powershell
+python tools/check_ai_docs.py --summary --details
+```
+
+Deployment verification must include `/api/status`, authenticated `/v1/models`, and at least one real `/v1/chat/completions` path for active groups.

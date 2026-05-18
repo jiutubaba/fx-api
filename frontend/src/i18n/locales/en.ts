@@ -308,6 +308,7 @@ export default {
     saving: 'Saving...',
     selectedCount: '({count} selected)',
     refresh: 'Refresh',
+    resizeColumn: 'Resize {column} column',
     autoRefresh: {
       title: 'Auto Refresh',
       enable: 'Enable auto refresh',

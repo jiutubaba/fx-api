@@ -219,6 +219,7 @@
           :sort-storage-key="ACCOUNT_SORT_STORAGE_KEY"
           :estimate-row-height="72"
           :overscan="5"
+          @column-resize="handleColumnResize"
         >
           <template #header-select>
             <input
@@ -434,6 +435,7 @@ import TLSFingerprintProfilesModal from '@/components/admin/TLSFingerprintProfil
 import { buildOpenAIUsageRefreshKey } from '@/utils/accountUsageRefresh'
 import { formatDateTime, formatNumber, formatRelativeTime } from '@/utils/format'
 import type { Account, AccountPlatform, AccountType, Proxy as AccountProxy, AdminGroup, WindowStats, ClaudeModel } from '@/types'
+import type { Column } from '@/components/common/types'
 
 const { t } = useI18n()
 const appStore = useAppStore()
@@ -516,6 +518,26 @@ const accountToolsDropdownRef = ref<HTMLElement | null>(null)
 const hiddenColumns = reactive<Set<string>>(new Set())
 const DEFAULT_HIDDEN_COLUMNS = ['today_stats', 'proxy', 'notes', 'priority', 'rate_multiplier']
 const HIDDEN_COLUMNS_KEY = 'account-hidden-columns'
+const COLUMN_WIDTHS_KEY = 'account-column-widths'
+const columnWidths = reactive<Record<string, number>>({})
+const ACCOUNT_COLUMN_SIZES: Record<string, { width: number; minWidth: number; maxWidth?: number }> = {
+  select: { width: 52, minWidth: 52, maxWidth: 64 },
+  name: { width: 220, minWidth: 160, maxWidth: 420 },
+  platform_type: { width: 180, minWidth: 140, maxWidth: 320 },
+  capacity: { width: 132, minWidth: 112, maxWidth: 240 },
+  status: { width: 150, minWidth: 120, maxWidth: 260 },
+  schedulable: { width: 116, minWidth: 96, maxWidth: 180 },
+  today_stats: { width: 160, minWidth: 132, maxWidth: 280 },
+  groups: { width: 180, minWidth: 140, maxWidth: 320 },
+  usage: { width: 220, minWidth: 170, maxWidth: 360 },
+  proxy: { width: 150, minWidth: 120, maxWidth: 260 },
+  priority: { width: 92, minWidth: 76, maxWidth: 140 },
+  rate_multiplier: { width: 128, minWidth: 112, maxWidth: 180 },
+  last_used_at: { width: 140, minWidth: 116, maxWidth: 220 },
+  expires_at: { width: 150, minWidth: 120, maxWidth: 240 },
+  notes: { width: 220, minWidth: 150, maxWidth: 420 },
+  actions: { width: 152, minWidth: 132, maxWidth: 220 }
+}
 
 // Sorting settings
 const ACCOUNT_SORT_STORAGE_KEY = 'account-table-sort'
@@ -660,6 +682,48 @@ const saveColumnsToStorage = () => {
   }
 }
 
+const normalizeAccountColumnWidth = (key: string, width: number) => {
+  const config = ACCOUNT_COLUMN_SIZES[key]
+  if (!config || !Number.isFinite(width)) return null
+  const max = config.maxWidth ?? 640
+  return Math.min(Math.max(Math.round(width), config.minWidth), max)
+}
+
+const loadSavedColumnWidths = () => {
+  try {
+    const saved = localStorage.getItem(COLUMN_WIDTHS_KEY)
+    if (!saved) return
+    const parsed = JSON.parse(saved) as Record<string, number>
+    Object.entries(parsed).forEach(([key, width]) => {
+      const normalized = normalizeAccountColumnWidth(key, Number(width))
+      if (normalized != null) columnWidths[key] = normalized
+    })
+  } catch (e) {
+    console.error('Failed to load saved account column widths:', e)
+  }
+}
+
+const saveColumnWidthsToStorage = () => {
+  try {
+    localStorage.setItem(COLUMN_WIDTHS_KEY, JSON.stringify(columnWidths))
+  } catch (e) {
+    console.error('Failed to save account column widths:', e)
+  }
+}
+
+const withAccountColumnSize = (column: Column): Column => {
+  const config = ACCOUNT_COLUMN_SIZES[column.key]
+  if (!config) return column
+  const width = normalizeAccountColumnWidth(column.key, columnWidths[column.key] ?? config.width) ?? config.width
+  return {
+    ...column,
+    width,
+    minWidth: config.minWidth,
+    maxWidth: config.maxWidth,
+    resizable: column.key !== 'select'
+  }
+}
+
 const loadSavedAutoRefresh = () => {
   try {
     const saved = localStorage.getItem(AUTO_REFRESH_STORAGE_KEY)
@@ -691,6 +755,7 @@ const saveAutoRefreshToStorage = () => {
 
 if (typeof window !== 'undefined') {
   loadSavedColumns()
+  loadSavedColumnWidths()
   loadSavedAutoRefresh()
 }
 
@@ -730,6 +795,13 @@ const toggleColumn = (key: string) => {
 }
 
 const isColumnVisible = (key: string) => !hiddenColumns.has(key)
+
+const handleColumnResize = (key: string, width: number) => {
+  const normalized = normalizeAccountColumnWidth(key, width)
+  if (normalized == null) return
+  columnWidths[key] = normalized
+  saveColumnWidthsToStorage()
+}
 
 const {
   items: accounts,
@@ -1164,8 +1236,8 @@ function getAntigravityTierClass(row: any): string {
 }
 
 // All available columns
-const allColumns = computed(() => {
-  const c = [
+const allColumns = computed<Column[]>(() => {
+  const c: Column[] = [
     { key: 'select', label: '', sortable: false },
     { key: 'name', label: t('admin.accounts.columns.name'), sortable: true },
     { key: 'platform_type', label: t('admin.accounts.columns.platformType'), sortable: false },
@@ -1187,7 +1259,7 @@ const allColumns = computed(() => {
     { key: 'notes', label: t('admin.accounts.columns.notes'), sortable: false },
     { key: 'actions', label: t('admin.accounts.columns.actions'), sortable: false }
   )
-  return c
+  return c.map(withAccountColumnSize)
 })
 
 // Columns that can be toggled (exclude select, name, and actions)

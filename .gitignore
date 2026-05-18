@@ -86,6 +86,8 @@ temp/
 .cache/
 .dev/
 .serena/
+__pycache__/
+*.py[cod]
 
 # ===================
 # 构建产物

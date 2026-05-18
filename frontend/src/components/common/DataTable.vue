@@ -69,7 +69,18 @@
       'is-scrollable': isScrollable
     }"
   >
-    <table class="w-full min-w-max divide-y divide-gray-200 dark:divide-dark-700">
+    <table
+      class="w-full min-w-max divide-y divide-gray-200 dark:divide-dark-700"
+      :class="{ 'select-none': resizingColumnKey }"
+      :style="tableStyle"
+    >
+      <colgroup v-if="hasColumnWidths">
+        <col
+          v-for="column in columns"
+          :key="column.key"
+          :style="getColumnStyle(column)"
+        />
+      </colgroup>
       <thead class="table-header bg-gray-50 dark:bg-dark-800">
         <tr>
           <th
@@ -83,45 +94,62 @@
               getStickyColumnClass(column, index),
               column.class
             ]"
-            @click="column.sortable && handleSort(column.key)"
+            :style="getColumnStyle(column)"
+            @click="column.sortable && !resizingColumnKey && handleSort(column.key)"
           >
-            <slot
-              :name="`header-${column.key}`"
-              :column="column"
-              :sort-key="sortKey"
-              :sort-order="sortOrder"
-            >
-              <div class="flex items-center space-x-1">
-                <span>{{ column.label }}</span>
-                <span v-if="column.sortable" class="text-gray-400 dark:text-dark-500">
-                  <svg
-                    v-if="sortKey === column.key"
-                    class="h-4 w-4"
-                    :class="{ 'rotate-180 transform': sortOrder === 'desc' }"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <svg v-else class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </slot>
+            <div class="column-header-content">
+              <slot
+                :name="`header-${column.key}`"
+                :column="column"
+                :sort-key="sortKey"
+                :sort-order="sortOrder"
+              >
+                <div class="flex items-center space-x-1">
+                  <span>{{ column.label }}</span>
+                  <span v-if="column.sortable" class="text-gray-400 dark:text-dark-500">
+                    <svg
+                      v-if="sortKey === column.key"
+                      class="h-4 w-4"
+                      :class="{ 'rotate-180 transform': sortOrder === 'desc' }"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <svg v-else class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </slot>
+            </div>
+            <button
+              v-if="column.resizable"
+              type="button"
+              class="column-resize-handle"
+              :class="{ 'is-resizing': resizingColumnKey === column.key }"
+              :aria-label="t('common.resizeColumn', { column: column.label || column.key })"
+              @click.stop
+              @pointerdown="startColumnResize(column, $event)"
+            />
           </th>
         </tr>
       </thead>
       <tbody class="table-body divide-y divide-gray-200 bg-white dark:divide-dark-700 dark:bg-dark-900">
         <!-- Loading skeleton -->
         <tr v-if="loading" v-for="i in 5" :key="i">
-          <td v-for="column in columns" :key="column.key" :class="['whitespace-nowrap py-4', getAdaptivePaddingClass()]">
+          <td
+            v-for="column in columns"
+            :key="column.key"
+            :class="['whitespace-nowrap py-4', getAdaptivePaddingClass()]"
+            :style="getColumnStyle(column)"
+          >
             <div class="animate-pulse">
               <div class="h-4 w-3/4 rounded bg-gray-200 dark:bg-dark-700"></div>
             </div>
@@ -173,6 +201,7 @@
                 getStickyColumnClass(column, colIndex),
                 column.class
               ]"
+              :style="getColumnStyle(column)"
             >
               <slot :name="`cell-${column.key}`"
                     :row="sortedData[virtualRow.index]"
@@ -196,7 +225,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { computed, ref, onMounted, onUnmounted, watch, nextTick, type CSSProperties } from 'vue'
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { useI18n } from 'vue-i18n'
 import type { Column } from './types'
@@ -211,6 +240,7 @@ const isDesktopViewport = ref(
 
 const emit = defineEmits<{
   sort: [key: string, order: 'asc' | 'desc']
+  columnResize: [key: string, width: number]
 }>()
 
 // 表格容器引用
@@ -321,6 +351,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  stopColumnResize()
   detachDesktopTableTracking()
   if (desktopViewportMediaQuery && desktopViewportListener) {
     if (typeof desktopViewportMediaQuery.removeEventListener === 'function') {
@@ -375,6 +406,17 @@ const props = withDefaults(defineProps<Props>(), {
 const sortKey = ref<string>('')
 const sortOrder = ref<'asc' | 'desc'>('asc')
 const actionsExpanded = ref(false)
+const resizingColumnKey = ref<string | null>(null)
+
+type ColumnResizeState = {
+  key: string
+  startX: number
+  startWidth: number
+  minWidth: number
+  maxWidth: number
+}
+
+let columnResizeState: ColumnResizeState | null = null
 
 type PersistedSortState = {
   key: string
@@ -506,6 +548,76 @@ const dataColumns = computed(() => props.columns.filter((column) => column.key !
 const columnsSignature = computed(() =>
   props.columns.map((column) => `${column.key}:${column.sortable ? '1' : '0'}`).join('|')
 )
+const hasColumnWidths = computed(() =>
+  props.columns.length > 0 && props.columns.every(column => Number.isFinite(column.width))
+)
+const tableWidth = computed(() =>
+  props.columns.reduce((total, column) => total + (Number.isFinite(column.width) ? Number(column.width) : 0), 0)
+)
+const tableStyle = computed<CSSProperties>(() => {
+  if (!hasColumnWidths.value) return {}
+  return {
+    width: `${tableWidth.value}px`,
+    minWidth: '100%',
+    tableLayout: 'fixed'
+  }
+})
+
+const normalizeColumnWidth = (width: number, minWidth?: number, maxWidth?: number) => {
+  const min = minWidth ?? 56
+  const max = maxWidth ?? 640
+  return Math.min(Math.max(Math.round(width), min), max)
+}
+
+const getColumnStyle = (column: Column): CSSProperties => {
+  if (!Number.isFinite(column.width)) return {}
+  const width = normalizeColumnWidth(Number(column.width), column.minWidth, column.maxWidth)
+  return {
+    width: `${width}px`,
+    minWidth: `${width}px`,
+    maxWidth: `${width}px`
+  }
+}
+
+const stopColumnResize = () => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('pointermove', handleColumnResizeMove)
+    window.removeEventListener('pointerup', stopColumnResize)
+    window.removeEventListener('pointercancel', stopColumnResize)
+  }
+  columnResizeState = null
+  resizingColumnKey.value = null
+}
+
+const handleColumnResizeMove = (event: PointerEvent) => {
+  if (!columnResizeState) return
+  event.preventDefault()
+  const nextWidth = normalizeColumnWidth(
+    columnResizeState.startWidth + event.clientX - columnResizeState.startX,
+    columnResizeState.minWidth,
+    columnResizeState.maxWidth
+  )
+  emit('columnResize', columnResizeState.key, nextWidth)
+}
+
+const startColumnResize = (column: Column, event: PointerEvent) => {
+  if (!column.resizable || !Number.isFinite(column.width)) return
+  event.preventDefault()
+  event.stopPropagation()
+  columnResizeState = {
+    key: column.key,
+    startX: event.clientX,
+    startWidth: Number(column.width),
+    minWidth: column.minWidth ?? 56,
+    maxWidth: column.maxWidth ?? 640
+  }
+  resizingColumnKey.value = column.key
+  if (typeof window !== 'undefined') {
+    window.addEventListener('pointermove', handleColumnResizeMove)
+    window.addEventListener('pointerup', stopColumnResize)
+    window.addEventListener('pointercancel', stopColumnResize)
+  }
+}
 
 watch(
   isDesktopViewport,
@@ -532,6 +644,11 @@ watch(
 
 // 单独监听展开状态变化，只更新滚动状态
 watch(actionsExpanded, async () => {
+  await nextTick()
+  checkScrollable()
+})
+
+watch(tableWidth, async () => {
   await nextTick()
   checkScrollable()
 })
@@ -740,6 +857,50 @@ defineExpose({
   top: 0;
   z-index: 210; /* 必须高于所有表体内容 */
   background-color: rgb(249 250 251);
+}
+
+.column-header-content {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.column-resize-handle {
+  position: absolute;
+  top: 0;
+  right: -4px;
+  bottom: 0;
+  z-index: 30;
+  width: 8px;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.column-resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 3px;
+  bottom: 8px;
+  width: 1px;
+  background-color: rgb(209 213 219);
+  opacity: 0;
+  transition: opacity 120ms ease, background-color 120ms ease;
+}
+
+.column-resize-handle:hover::after,
+.column-resize-handle.is-resizing::after {
+  background-color: rgb(59 130 246);
+  opacity: 1;
+}
+
+.dark .column-resize-handle::after {
+  background-color: rgb(75 85 99);
+}
+
+.dark .column-resize-handle:hover::after,
+.dark .column-resize-handle.is-resizing::after {
+  background-color: rgb(96 165 250);
 }
 
 .dark .sticky-header-cell {

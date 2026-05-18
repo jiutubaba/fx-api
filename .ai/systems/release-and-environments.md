@@ -1,5 +1,7 @@
 # Release And Environments
 
+Last verified: 2026-05-18
+
 ## Active Runtime
 
 - Server: `38.12.6.32`
@@ -27,6 +29,41 @@
 - Migration: `deploy/fuxi/migrate.sh`
 - Production Caddy switch: `deploy/fuxi/switch-prod-caddy.sh`
 
+## Version Source
+
+- Embedded application version source: `backend/cmd/server/VERSION`.
+- Current release workflow also syncs `backend/cmd/server/VERSION` from the tag version when GitHub Release runs.
+- Default version bump policy: increment patch unless the user explicitly asks for minor or major.
+- Active release tags use `vX.Y.Z`; the embedded `VERSION` file stores `X.Y.Z` without the `v` prefix.
+- If `backend/cmd/server/VERSION`, `.github/workflows/release.yml`, Dockerfile release settings, or deploy scripts change, verify the frontend build artifact and Go build version path together.
+
+## Meaning of "更新发布版并归档"
+
+This phrase is a release-version closure request. It is not only a version-file edit.
+
+Default scope:
+
+1. Inspect current worktree and confirm the target changes are included.
+2. Bump the patch version in `backend/cmd/server/VERSION` unless the user asks for another semantic version level.
+3. Run local verification appropriate to the touched areas:
+   - Backend: `go test ./...`
+   - Frontend: `npx pnpm --dir frontend run typecheck`
+   - Frontend lint: `npx pnpm --dir frontend run lint:check`
+   - Diff hygiene: `git diff --check`
+   - AI docs if `.ai/` changed: `python tools/check_ai_docs.py --summary --details`
+4. Update `.ai/MEMORY.md`, `.ai/sessions.md`, and `.ai/archive/sessions/` with the version, scope, verification, deployment status, and known risks.
+5. Commit and push the release-prep changes when the release candidate is ready.
+6. If the user explicitly confirmed staging or production update, run the corresponding skill and archive deployment verification.
+
+Production deployment remains confirmation-gated. A bare `更新发布版并归档` prepares and records a release candidate; it does not automatically switch or update production unless the current user request clearly includes production deployment.
+
+## Staging and Production Rules
+
+- Staging may be updated when the user clearly asks for staging.
+- Production update requires explicit confirmation that production should be updated now.
+- Before production update, confirm local branch is pushed, CI/GHCR target commit is successful or record the risk, and rollback remains available.
+- Never delete old `new-api`, `new-api-staging`, `/data/new-api/**`, or local `F:\newAPI` while these are protected rollback/legacy resources.
+
 Production Caddy switch requires:
 
 ```bash
@@ -41,4 +78,3 @@ CONFIRM_SWITCH=fuxiapi.top
 - `/v1/chat/completions` for active production groups
 - Redis persistence and write status
 - Caddy target lines
-

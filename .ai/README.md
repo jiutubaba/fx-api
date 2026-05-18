@@ -10,6 +10,8 @@ Source code, deploy scripts, server state, and migration reports remain the fina
 2. Read the relevant `.ai/systems/*.md` files.
 3. Read `.ai/MEMORY.md` for the current hot state.
 
+Use `.ai/assistant_guide.md` for execution style, release closure, and archive semantics.
+
 ## Structure
 
 ```text
@@ -17,17 +19,24 @@ Source code, deploy scripts, server state, and migration reports remain the fina
 ├── README.md
 ├── router.md
 ├── shared_instructions.md
+├── assistant_guide.md
 ├── project_guide.md
 ├── rules.md
 ├── code_style.md
 ├── systems/
+├── generated/
 ├── MEMORY.md
 ├── sessions.md
 ├── backlog.md
 └── archive/
 ```
 
+## Health Check
+
+```powershell
+python tools/check_ai_docs.py --summary --details
+```
+
 ## Legacy Note
 
 The old `F:\newAPI` AI architecture inspired this structure. Its old paths, release scripts, GORM/React/Bun assumptions, and `/data/new-api/**` runtime model are archived as legacy context only.
-

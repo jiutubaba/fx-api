@@ -308,6 +308,7 @@ export default {
     saving: '保存中...',
     selectedCount: '（已选 {count} 个）',
     refresh: '刷新',
+    resizeColumn: '调整 {column} 列宽',
     autoRefresh: {
       title: '自动刷新',
       enable: '启用自动刷新',
