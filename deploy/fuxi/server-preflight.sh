@@ -56,7 +56,7 @@ import sys
 
 path = pathlib.Path(sys.argv[1])
 site = sys.argv[2]
-site_re = re.compile(rf"^\s*{re.escape(site)}(?:\s|,|\{{)")
+site_re = re.compile(rf"(^|[\s,])(?:https?://)?{re.escape(site)}(?=[\s,\{{]|$)")
 for line in path.read_text().splitlines():
     if site_re.search(line):
         raise SystemExit(0)

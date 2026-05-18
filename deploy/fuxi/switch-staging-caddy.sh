@@ -22,25 +22,34 @@ site = sys.argv[2]
 target = sys.argv[3]
 lines = path.read_text().splitlines(keepends=True)
 
-start = None
-brace_depth = 0
-site_re = re.compile(rf"^\s*{re.escape(site)}(?:\s|,|\{{)")
-for i, line in enumerate(lines):
-    if start is None:
-        if site_re.search(line):
-            start = i
-            brace_depth += line.count("{") - line.count("}")
+site_re = re.compile(rf"(^|[\s,])(?:https?://)?{re.escape(site)}(?=[\s,\{{]|$)")
+updated = 0
+i = 0
+while i < len(lines):
+    line = lines[i]
+    if not site_re.search(line):
+        i += 1
         continue
-    brace_depth += line.count("{") - line.count("}")
-    if re.match(r"^\s*reverse_proxy\s+", line):
-        indent = re.match(r"^(\s*)", line).group(1)
-        lines[i] = f"{indent}reverse_proxy {target}\n"
-        path.write_text("".join(lines))
-        raise SystemExit(0)
-    if brace_depth <= 0:
-        break
 
-raise SystemExit(f"reverse_proxy for site {site!r} not found in {path}")
+    brace_depth = line.count("{") - line.count("}")
+    j = i + 1
+    while j < len(lines):
+        block_line = lines[j]
+        if re.match(r"^\s*reverse_proxy\s+", block_line):
+            indent = re.match(r"^(\s*)", block_line).group(1)
+            lines[j] = f"{indent}reverse_proxy {target}\n"
+            updated += 1
+            break
+        brace_depth += block_line.count("{") - block_line.count("}")
+        if brace_depth <= 0:
+            break
+        j += 1
+    i = j + 1
+
+if updated == 0:
+    raise SystemExit(f"reverse_proxy for site {site!r} not found in {path}")
+
+path.write_text("".join(lines))
 PY
 
 caddy validate --config "${CADDYFILE}"
