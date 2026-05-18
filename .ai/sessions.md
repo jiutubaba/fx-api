@@ -13,6 +13,7 @@
 - Updated release/environment docs so `更新发布版并归档` means version closure: version bump, verification, release-prep commit/push when ready, `.ai` archive updates, and environment deployment only when explicitly confirmed.
 - Kept old new-api assumptions legacy-only: GORM, React/Rsbuild/Bun, old `/data/new-api/**` scripts, and old `new-api` containers do not override current Fuxi API rules.
 - Release-prep commit pushed to `origin/main`: `41d81ff1 Prepare 0.1.127 account table release`.
+- GitHub Release `v0.1.127` published successfully; Release, CI, and Security Scan workflows succeeded for tag `v0.1.127`.
 
 See `.ai/archive/sessions/2026-05.md` for the detailed archive.
 
@@ -24,6 +25,7 @@ See `.ai/archive/sessions/2026-05.md` for the detailed archive.
 - Verified frontend `typecheck`, frontend `lint:check`, and `git diff --check`.
 - Bumped the embedded backend release version from `0.1.126` to `0.1.127` for the next release candidate.
 - Release-prep commit pushed to `origin/main`: `41d81ff1 Prepare 0.1.127 account table release`.
+- GitHub Release `v0.1.127` published successfully at `https://github.com/jiutubaba/fx-api/releases/tag/v0.1.127`.
 - Confirmed the local preview can proxy to staging at `http://localhost:3000/`, with `/api/status` returning 200.
 - Confirmed 429 / `7d 100%` exhausted accounts are rate-limited and temporarily excluded from scheduling until reset, not directly disabled.
 

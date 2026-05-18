@@ -77,5 +77,7 @@ CONFIRM_SWITCH=fuxiapi.top NEW_TARGET=127.0.0.1:3000 /data/fuxi-api/deploy/switc
 - Existing clients must update API keys to include the new `sk-` prefix; unprefixed API keys now intentionally fail authentication.
 - GitHub CI for `33c5e36c` recorded a failed backend `test` job with only `exit code 2` visible via public annotations; local `go test ./...`, `make test-unit`, frontend `typecheck`, and frontend `lint:check` passed before publishing, and GHCR Image/Security Scan were successful.
 - Deleting or overwriting old rollback resources still requires a future project rule change; current rules prohibit it.
-- `0.1.127` is pushed to `origin/main` but not yet tagged as a GitHub Release and not deployed to production from this session.
+- GitHub Release `v0.1.127` published successfully at 2026-05-18 21:22 +08:00: https://github.com/jiutubaba/fx-api/releases/tag/v0.1.127
+- Release workflow run `26035687293` succeeded; tag CI run `26035687297` succeeded; tag Security Scan run `26035687263` succeeded.
+- `0.1.127` has not been deployed to production from this session.
 - AI docs health check passed after migration: `python tools/check_ai_docs.py --summary --details` reported 0 failures and 0 warnings; context recall passed for `backend/cmd/server/VERSION`, `frontend/src/views/admin/AccountsView.vue`, and `deploy/fuxi/deploy-staging.sh`.
