@@ -12,10 +12,10 @@
       </div>
       <!-- Login Form -->
       <form @submit.prevent="handleLogin" class="space-y-5">
-        <!-- Email Input -->
+        <!-- Login Identifier Input -->
         <div>
           <label for="email" class="input-label">
-            {{ t('auth.emailLabel') }}
+            {{ t('auth.loginIdentifierLabel') }}
           </label>
           <div class="relative">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
@@ -24,14 +24,14 @@
             <input
               id="email"
               v-model="formData.email"
-              type="email"
+              type="text"
               required
               autofocus
-              autocomplete="email"
+              autocomplete="username"
               :disabled="authActionDisabled"
               class="input pl-11"
               :class="{ 'input-error': errors.email }"
-              :placeholder="t('auth.emailPlaceholder')"
+              :placeholder="t('auth.loginIdentifierPlaceholder')"
             />
           </div>
         </div>
@@ -426,11 +426,12 @@ function validateForm(): boolean {
     return false
   }
 
-  // Email validation
-  if (!formData.email.trim()) {
-    errors.email = t('auth.emailRequired')
+  // Login identifier validation
+  const loginIdentifier = formData.email.trim()
+  if (!loginIdentifier) {
+    errors.email = t('auth.loginIdentifierRequired')
     isValid = false
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+  } else if (loginIdentifier.includes('@') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginIdentifier)) {
     errors.email = t('auth.invalidEmail')
     isValid = false
   }
@@ -469,7 +470,7 @@ async function handleLogin(): Promise<void> {
   try {
     // Call auth store login
     const response = await authStore.login({
-      email: formData.email,
+      email: formData.email.trim(),
       password: formData.password,
       turnstile_token: turnstileEnabled.value ? turnstileToken.value : undefined
     })

@@ -9,6 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"net/mail"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -50,6 +51,8 @@ const maxTokenLength = 8192
 
 // refreshTokenPrefix is the prefix for refresh tokens to distinguish them from access tokens.
 const refreshTokenPrefix = "rt_"
+
+var regexpNonEmailLoginChars = regexp.MustCompile(`[^a-zA-Z0-9._%+-]+`)
 
 // JWTClaims JWT载荷数据
 type JWTClaims struct {
@@ -432,6 +435,7 @@ func (s *AuthService) IsEmailVerifyEnabled(ctx context.Context) bool {
 
 // Login 用户登录，返回JWT token
 func (s *AuthService) Login(ctx context.Context, email, password string) (string, *User, error) {
+	email = normalizeLoginIdentifier(email)
 	// 查找用户
 	user, err := s.userRepo.GetByEmail(ctx, email)
 	if err != nil {
@@ -460,6 +464,15 @@ func (s *AuthService) Login(ctx context.Context, email, password string) (string
 	}
 
 	return token, user, nil
+}
+
+func normalizeLoginIdentifier(identifier string) string {
+	identifier = strings.TrimSpace(identifier)
+	if identifier == "" || strings.Contains(identifier, "@") {
+		return identifier
+	}
+	legacyLocalPart := strings.ToLower(regexpNonEmailLoginChars.ReplaceAllString(identifier, "_"))
+	return legacyLocalPart + "@legacy.fuxi.local"
 }
 
 // LoginOrRegisterOAuth 用于第三方 OAuth/SSO 登录：
