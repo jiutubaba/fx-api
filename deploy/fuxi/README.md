@@ -5,14 +5,20 @@
 ## 预发
 
 1. 在服务器创建 `/data/fuxi-api/staging/.env`，可从 `env.staging.example` 复制后填入真实 DSN、Redis、JWT、TOTP 等密钥。
-2. 先迁移预发源库到新的预发目标库：
+2. 执行只读预检：
+
+```bash
+sudo APP_ROOT=/data/fuxi-api/staging ./server-preflight.sh
+```
+
+3. 先迁移预发源库到新的预发目标库：
 
 ```bash
 sudo APP_ROOT=/data/fuxi-api/staging SOURCE_NAME=staging MODE=dry-run ./migrate.sh
 sudo APP_ROOT=/data/fuxi-api/staging SOURCE_NAME=staging MODE=apply CONFIRM_APPLY=staging ./migrate.sh
 ```
 
-3. 启动新预发容器：
+4. 启动新预发容器：
 
 ```bash
 sudo IMAGE=ghcr.io/jiutubaba/fx-api:latest ./deploy-staging.sh
@@ -20,7 +26,7 @@ sudo IMAGE=ghcr.io/jiutubaba/fx-api:latest ./deploy-staging.sh
 
 预发容器名为 `fuxi-api-staging`，宿主机只绑定 `127.0.0.1:3200`。
 
-4. 本机验收通过后再切 `staging.fuxiapi.top`：
+5. 本机验收通过后再切 `staging.fuxiapi.top`：
 
 ```bash
 sudo ./verify-staging.sh
@@ -53,5 +59,5 @@ sudo CONFIRM_SWITCH=fuxiapi.top ./switch-prod-caddy.sh
 
 - 旧 `new-api`、`new-api-staging` 容器和 `/data/new-api/**` 不删除。
 - `switch-staging-caddy.sh` 只处理 `staging.fuxiapi.top`，不会修改 `fuxiapi.top`。
-- `switch-prod-caddy.sh` 必须显式设置 `CONFIRM_SWITCH=fuxiapi.top`。
+- `switch-prod-caddy.sh` 只处理 `fuxiapi.top`，且必须显式设置 `CONFIRM_SWITCH=fuxiapi.top`。
 - `.env` 中的 DSN、OAuth secret、支付 secret 只保留在服务器，不提交到 Git。

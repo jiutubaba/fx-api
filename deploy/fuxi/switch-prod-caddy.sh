@@ -7,22 +7,40 @@ if [ "${CONFIRM_SWITCH:-}" != "fuxiapi.top" ]; then
 fi
 
 CADDYFILE="${CADDYFILE:-/etc/caddy/Caddyfile}"
-OLD_TARGET="${OLD_TARGET:-127.0.0.1:3000}"
+SITE="${SITE:-fuxiapi.top}"
 NEW_TARGET="${NEW_TARGET:-127.0.0.1:3300}"
 BACKUP="${CADDYFILE}.bak.$(date +%Y%m%d-%H%M%S)"
 
 cp "${CADDYFILE}" "${BACKUP}"
-python3 - "$CADDYFILE" "$OLD_TARGET" "$NEW_TARGET" <<'PY'
+python3 - "$CADDYFILE" "$SITE" "$NEW_TARGET" <<'PY'
 import pathlib
+import re
 import sys
 
 path = pathlib.Path(sys.argv[1])
-old = sys.argv[2]
-new = sys.argv[3]
-text = path.read_text()
-if old not in text:
-    raise SystemExit(f"old target {old!r} not found in {path}")
-path.write_text(text.replace(old, new, 1))
+site = sys.argv[2]
+target = sys.argv[3]
+lines = path.read_text().splitlines(keepends=True)
+
+start = None
+brace_depth = 0
+site_re = re.compile(rf"^\s*{re.escape(site)}(?:\s|,|\{{)")
+for i, line in enumerate(lines):
+    if start is None:
+        if site_re.search(line):
+            start = i
+            brace_depth += line.count("{") - line.count("}")
+        continue
+    brace_depth += line.count("{") - line.count("}")
+    if re.match(r"^\s*reverse_proxy\s+", line):
+        indent = re.match(r"^(\s*)", line).group(1)
+        lines[i] = f"{indent}reverse_proxy {target}\n"
+        path.write_text("".join(lines))
+        raise SystemExit(0)
+    if brace_depth <= 0:
+        break
+
+raise SystemExit(f"reverse_proxy for site {site!r} not found in {path}")
 PY
 
 caddy validate --config "${CADDYFILE}"

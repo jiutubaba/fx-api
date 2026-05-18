@@ -17,9 +17,11 @@ cd "${APP_ROOT}"
 docker compose --env-file .env -f docker-compose.yml pull
 docker compose --env-file .env -f docker-compose.yml up -d
 docker compose --env-file .env -f docker-compose.yml ps
+server_port="$(awk -F= '$1 == "SERVER_PORT" {print $2; exit}' .env)"
+server_port="${server_port:-3200}"
 for _ in $(seq 1 30); do
-  if curl -fsS "http://127.0.0.1:${SERVER_PORT:-3200}/health" >/dev/null; then
-    echo "Staging health check passed at http://127.0.0.1:${SERVER_PORT:-3200}/health"
+  if curl -fsS "http://127.0.0.1:${server_port}/health" >/dev/null; then
+    echo "Staging health check passed at http://127.0.0.1:${server_port}/health"
     exit 0
   fi
   sleep 2
