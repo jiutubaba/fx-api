@@ -10,7 +10,7 @@ Last updated: 2026-05-18
 - Old `new-api` and `new-api-staging` containers remain running and preserved for rollback.
 - Old `/data/new-api/**` and local `F:\newAPI` are preserved backup and legacy reference sources.
 - Latest repository commit at cutover: `a8dbd12b Configure fuxi proxy runtime defaults`.
-- Latest production follow-up commit: `a0177bcb Document post-cutover release sync`.
+- Latest production follow-up commit: `33c5e36c Record production release sync verification`.
 - Post-cutover cleanup boundary: old `new-api`, `new-api-staging`, `/data/new-api/**`, and local `F:\newAPI` are protected rollback/backup resources, not disposable residue.
 - Production candidate image verified after cutover: `sha256:59879147153e0714e6eaf5df61f4c51168d6a9d65b24d3ab8388a479d66b714e`.
 - Caddy backup from cutover: `/etc/caddy/Caddyfile.bak.20260518-062510`.
@@ -32,6 +32,8 @@ Last updated: 2026-05-18
 - Production release sync completed for image revision `a0177bcb59d932d825e7a82237a432aed9aad886`; `fuxi-api-prod` is healthy with 0 restarts.
 - Authenticated `https://fuxiapi.top/v1/models`: 200 after release sync.
 - `free` group `gpt-5.4-mini` chat completion: 200 after release sync.
+- Production release update completed at 2026-05-18 18:33 +08:00 for image revision `33c5e36c31a1b4f8686526ff15fea934565f9982`; `fuxi-api-prod` runs image `sha256:d2dbb784f80a563d13747bf7c9813e014e7e07d447d31e4b92ed3f175f46d567`, healthy with 0 restarts.
+- Verified after the update: local/public `/api/status` 200, homepage 200, `/available-channels` 200, `/monitor` 200, Redis persistence OK, authenticated `/v1/models` 200 (`key_id=10`, 4 models), and `gpt-5.4-mini` `/v1/chat/completions` 200.
 - GET `https://fuxiapi.top/api/status`: 200. Use GET for this endpoint; HEAD is not registered by Gin for the route.
 - GET `https://fuxiapi.top/health`: 200.
 - Old `/data/new-api`, `new-api`, and `new-api-staging` were reconfirmed present after the follow-up deploy and remain intentionally preserved.
@@ -52,6 +54,7 @@ CONFIRM_SWITCH=fuxiapi.top NEW_TARGET=127.0.0.1:3000 /data/fuxi-api/deploy/switc
 - `409cb4ee Improve account and channel visibility`
 - `870e51b4 Archive account visibility follow-up`
 - `a0177bcb Document post-cutover release sync`
+- `33c5e36c Record production release sync verification`
 
 ## Current Risks
 
@@ -61,4 +64,5 @@ CONFIRM_SWITCH=fuxiapi.top NEW_TARGET=127.0.0.1:3000 /data/fuxi-api/deploy/switc
 - `security.url_allowlist.enabled=false` remains a runtime warning inherited from current config; evaluate separately before tightening upstream URL policy.
 - Production `channels` is empty after migration; available-channel UI currently relies on the account-pool fallback from `accounts` and `groups`.
 - Production `channel_monitors` is empty; channel status UI displays an "unmonitored" account-pool fallback until real monitor tasks are configured.
+- GitHub CI for `33c5e36c` recorded a failed backend `test` job with only `exit code 2` visible via public annotations; local `go test ./...`, `make test-unit`, frontend `typecheck`, and frontend `lint:check` passed before publishing, and GHCR Image/Security Scan were successful.
 - Deleting or overwriting old rollback resources still requires a future project rule change; current rules prohibit it.

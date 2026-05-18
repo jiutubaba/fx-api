@@ -8,6 +8,9 @@
 - Verified production feature flags: `available_channels_enabled=true`, `channel_monitor_enabled=true`, `channel_monitor_default_interval_seconds=60`.
 - Re-ran local backend tests and frontend typecheck/lint before release sync.
 - Prepared release sync around the current GHCR production image and a follow-up documentation commit.
+- Updated production to GHCR image revision `33c5e36c31a1b4f8686526ff15fea934565f9982` / image `sha256:d2dbb784f80a563d13747bf7c9813e014e7e07d447d31e4b92ed3f175f46d567`.
+- Verified `fuxi-api-prod` healthy with 0 restarts, Redis persistence OK, local/public `/api/status` 200, homepage 200, `/available-channels` 200, `/monitor` 200, authenticated `/v1/models` 200, and a real `gpt-5.4-mini` chat completion 200.
+- Noted GitHub CI for `33c5e36c` had a backend `test` job failure with only `exit code 2` exposed publicly; local `go test ./...`, `make test-unit`, frontend typecheck, and frontend lint passed, while GHCR Image and Security Scan succeeded.
 
 ## 2026-05-18 - Account and Channel Visibility Follow-up
 
