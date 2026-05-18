@@ -23,13 +23,15 @@ Project-local AI working docs live under `.ai/`.
 
 The old `F:\newAPI` AI documentation was migrated as a legacy reference model only. It is not authoritative for this repository's architecture.
 
-When the user says "更新发布版并归档", treat it as a release-version closure workflow:
+When the user says "更新发布版" or "更新发布版并归档", treat it as a production release workflow:
 
-1. Bump the patch version by default in `backend/cmd/server/VERSION`.
+1. Bump the patch version by default in `backend/cmd/server/VERSION`, unless the requested release already exists.
 2. Run relevant verification for touched areas.
-3. Commit and push release-prep changes when ready.
-4. Update `.ai/MEMORY.md`, `.ai/sessions.md`, and `.ai/archive/sessions/`.
-5. Deploy staging or production only when that environment update is explicitly confirmed.
+3. Commit and push release changes to Git.
+4. Publish or update the GitHub tag/Release.
+5. Deploy production so `https://fuxiapi.top/` is actually updated.
+6. Verify production status, authenticated `/v1/models`, and at least one real `/v1/chat/completions`.
+7. Update `.ai/MEMORY.md`, `.ai/sessions.md`, and `.ai/archive/sessions/`.
 
 ## Tech Stack
 
@@ -57,7 +59,7 @@ deploy/fuxi/               - Fuxi staging/prod deployment and cutover scripts
 ## Production Safety Rules
 
 1. Do not delete or overwrite `F:\newAPI`, `/data/new-api/**`, `new-api`, or `new-api-staging`.
-2. Production Caddy cutover requires explicit user confirmation.
+2. Production Caddy cutover or rollback target changes require explicit user confirmation; the phrases "更新发布版" and "更新发布版并归档" are themselves explicit confirmation for a normal production app update.
 3. Staging may be updated directly when the user clearly asks for staging.
 4. Never write secrets, DSNs, OAuth secrets, JWT secrets, API keys, or password hashes into Git.
 5. Migration reports may record counts, paths, and warnings, but not credentials.

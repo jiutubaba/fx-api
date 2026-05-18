@@ -37,30 +37,32 @@ Last verified: 2026-05-18
 - Active release tags use `vX.Y.Z`; the embedded `VERSION` file stores `X.Y.Z` without the `v` prefix.
 - If `backend/cmd/server/VERSION`, `.github/workflows/release.yml`, Dockerfile release settings, or deploy scripts change, verify the frontend build artifact and Go build version path together.
 
-## Meaning of "更新发布版并归档"
+## Meaning of "更新发布版" and "更新发布版并归档"
 
-This phrase is a release-version closure request. It is not only a version-file edit.
+These phrases are full production release requests. They are not only version-file edits.
 
 Default scope:
 
 1. Inspect current worktree and confirm the target changes are included.
-2. Bump the patch version in `backend/cmd/server/VERSION` unless the user asks for another semantic version level.
+2. Bump the patch version in `backend/cmd/server/VERSION` unless the user asks for another semantic version level or the requested release already exists.
 3. Run local verification appropriate to the touched areas:
    - Backend: `go test ./...`
    - Frontend: `npx pnpm --dir frontend run typecheck`
    - Frontend lint: `npx pnpm --dir frontend run lint:check`
    - Diff hygiene: `git diff --check`
    - AI docs if `.ai/` changed: `python tools/check_ai_docs.py --summary --details`
-4. Update `.ai/MEMORY.md`, `.ai/sessions.md`, and `.ai/archive/sessions/` with the version, scope, verification, deployment status, and known risks.
-5. Commit and push the release-prep changes when the release candidate is ready.
-6. If the user explicitly confirmed staging or production update, run the corresponding skill and archive deployment verification.
+4. Commit and push release changes to Git.
+5. Publish or update the GitHub tag/Release.
+6. Deploy production so `https://fuxiapi.top/` is actually updated.
+7. Verify production status, Redis persistence/write state, authenticated `/v1/models`, and at least one real `/v1/chat/completions` request.
+8. Update `.ai/MEMORY.md`, `.ai/sessions.md`, and `.ai/archive/sessions/` with the version, scope, verification, deployment status, and known risks.
 
-Production deployment remains confirmation-gated. A bare `更新发布版并归档` prepares and records a release candidate; it does not automatically switch or update production unless the current user request clearly includes production deployment.
+`更新发布版` and `更新发布版并归档` are explicit confirmation for a normal production app update. Production Caddy cutover/rollback target changes and deletion of preserved legacy resources still require separate explicit confirmation.
 
 ## Staging and Production Rules
 
 - Staging may be updated when the user clearly asks for staging.
-- Production update requires explicit confirmation that production should be updated now.
+- Production app update may proceed when the user says `更新发布版`, `更新发布版并归档`, or otherwise explicitly asks to update production.
 - Before production update, confirm local branch is pushed, CI/GHCR target commit is successful or record the risk, and rollback remains available.
 - Never delete old `new-api`, `new-api-staging`, `/data/new-api/**`, or local `F:\newAPI` while these are protected rollback/legacy resources.
 

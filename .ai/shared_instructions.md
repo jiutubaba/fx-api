@@ -25,6 +25,6 @@
 
 ## Release Closure
 
-- `更新发布版并归档` means version bump, relevant verification, release-prep commit/push when ready, and `.ai` archive updates.
-- It does not override production confirmation gates.
+- `更新发布版` and `更新发布版并归档` mean commit/push, GitHub tag/Release publication, production deployment to `https://fuxiapi.top/`, production verification, and `.ai` archive updates.
+- They are explicit confirmation for normal production app updates; Caddy cutover/rollback target changes and protected legacy-resource deletion still need separate confirmation.
 - Record whether the result is `已归档，未发布`, `已准备发布候选`, `已发布预发`, or `已发布生产`.

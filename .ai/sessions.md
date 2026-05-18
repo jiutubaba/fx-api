@@ -1,5 +1,16 @@
 # Recent Sessions
 
+## 2026-05-18 - v0.1.127 Production Release
+
+- Published GitHub Release `v0.1.127`: `https://github.com/jiutubaba/fx-api/releases/tag/v0.1.127`.
+- Confirmed Release workflow `26035687293`, tag CI `26035687297`, tag Security Scan `26035687263`, and main archive CI `26036303890` succeeded.
+- Deployed production by pulling `ghcr.io/jiutubaba/fx-api:latest` and recreating `fuxi-api-prod`.
+- Verified `fuxi-api-prod` healthy with 0 restarts on image `sha256:c59db6ae5717934229f0a7b9655202b564b308e94a1f0e4102516c16b11492e7`.
+- Verified local/public `/api/status`, homepage, Redis persistence/write state, authenticated `/v1/models`, and a real `gpt-5.4` `/v1/chat/completions` request.
+- Updated release semantics: `更新发布版` and `更新发布版并归档` now mean commit/push, GitHub tag/Release, production deploy to `https://fuxiapi.top/`, verification, and archive.
+
+See `.ai/archive/sessions/2026-05.md` for the detailed archive.
+
 ## 2026-05-18 - Legacy AI Architecture Compatibility Migration
 
 - Rechecked old `F:\newAPI` AI architecture: root `AGENTS.md`/`CLAUDE.md`, `.ai` router/systems/generated/session layers, `.agents` release skills, and `tools/check_ai_docs.py`.
@@ -10,7 +21,7 @@
   - `.ai/router.md` `last_verified` schema
   - `.ai/generated/runtime-summary.md`
   - `.ai/generated/ai-doc-health-summary.md`
-- Updated release/environment docs so `更新发布版并归档` means version closure: version bump, verification, release-prep commit/push when ready, `.ai` archive updates, and environment deployment only when explicitly confirmed.
+- Initially documented `更新发布版并归档` as release-candidate closure; this was superseded later the same day by the active production-release meaning documented in the `v0.1.127 Production Release` entry above.
 - Kept old new-api assumptions legacy-only: GORM, React/Rsbuild/Bun, old `/data/new-api/**` scripts, and old `new-api` containers do not override current Fuxi API rules.
 - Release-prep commit pushed to `origin/main`: `41d81ff1 Prepare 0.1.127 account table release`.
 - GitHub Release `v0.1.127` published successfully; Release, CI, and Security Scan workflows succeeded for tag `v0.1.127`.

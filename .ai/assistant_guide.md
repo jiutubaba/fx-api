@@ -16,15 +16,16 @@
 
 ## Release Requests
 
-When the user says `更新发布版并归档`, interpret it as release-version closure, not a simple version-file edit.
+When the user says `更新发布版` or `更新发布版并归档`, interpret it as a full production release request, not a simple version-file edit.
 
 Default meaning:
 
 1. Read `.ai/systems/release-and-environments.md`.
-2. Bump the patch version unless the user explicitly asks for minor or major.
+2. Bump the patch version unless the user explicitly asks for minor or major, or the requested release already exists.
 3. Run the relevant local verification for the touched areas.
-4. Commit and push the release-prep change when the work is ready for release.
-5. If the user has explicitly confirmed staging or production update, run the corresponding skill and verify the deployed environment.
-6. Record results in `.ai/MEMORY.md`, `.ai/sessions.md`, and `.ai/archive/sessions/`.
+4. Commit and push the release change when the work is ready.
+5. Publish or update the GitHub tag/Release.
+6. Deploy production with `.agents/skills/update-server` and verify the deployed environment.
+7. Record results in `.ai/MEMORY.md`, `.ai/sessions.md`, and `.ai/archive/sessions/`.
 
-Production remains confirmation-gated. If the user only says `更新发布版并归档`, prepare and archive the release candidate, but do not deploy production unless the surrounding context explicitly confirms production update.
+The phrases `更新发布版` and `更新发布版并归档` are explicit confirmation for a normal production app update to `https://fuxiapi.top/`. Production Caddy cutover, rollback target changes, and deletion of preserved legacy resources remain separately confirmation-gated.
