@@ -10,7 +10,7 @@ Last updated: 2026-05-18
 - Old `new-api` and `new-api-staging` containers remain running and preserved for rollback.
 - Old `/data/new-api/**` and local `F:\newAPI` are preserved backup and legacy reference sources.
 - Latest repository commit at cutover: `a8dbd12b Configure fuxi proxy runtime defaults`.
-- Latest production follow-up commit: `870e51b4 Archive account visibility follow-up`.
+- Latest production follow-up commit: `a0177bcb Document post-cutover release sync`.
 - Post-cutover cleanup boundary: old `new-api`, `new-api-staging`, `/data/new-api/**`, and local `F:\newAPI` are protected rollback/backup resources, not disposable residue.
 - Production candidate image verified after cutover: `sha256:59879147153e0714e6eaf5df61f4c51168d6a9d65b24d3ab8388a479d66b714e`.
 - Caddy backup from cutover: `/etc/caddy/Caddyfile.bak.20260518-062510`.
@@ -29,6 +29,9 @@ Last updated: 2026-05-18
 - Follow-up deploy for account/channel visibility completed; `fuxi-api-prod` is healthy on `ghcr.io/jiutubaba/fx-api:latest`.
 - Post-cutover local verification passed: `go test ./...`, frontend `typecheck`, and frontend `lint:check`.
 - Production feature flags are enabled: `available_channels_enabled=true`, `channel_monitor_enabled=true`, `channel_monitor_default_interval_seconds=60`.
+- Production release sync completed for image revision `a0177bcb59d932d825e7a82237a432aed9aad886`; `fuxi-api-prod` is healthy with 0 restarts.
+- Authenticated `https://fuxiapi.top/v1/models`: 200 after release sync.
+- `free` group `gpt-5.4-mini` chat completion: 200 after release sync.
 - GET `https://fuxiapi.top/api/status`: 200. Use GET for this endpoint; HEAD is not registered by Gin for the route.
 - GET `https://fuxiapi.top/health`: 200.
 - Old `/data/new-api`, `new-api`, and `new-api-staging` were reconfirmed present after the follow-up deploy and remain intentionally preserved.
@@ -48,6 +51,7 @@ CONFIRM_SWITCH=fuxiapi.top NEW_TARGET=127.0.0.1:3000 /data/fuxi-api/deploy/switc
 - `a8dbd12b Configure fuxi proxy runtime defaults`
 - `409cb4ee Improve account and channel visibility`
 - `870e51b4 Archive account visibility follow-up`
+- `a0177bcb Document post-cutover release sync`
 
 ## Current Risks
 
