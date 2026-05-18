@@ -177,6 +177,10 @@ func run(ctx context.Context, opts options) error {
 		}
 		rep.LegacyArchive = archiveReports
 
+		if err := normalizeLegacyArchive(ctx, targetDB); err != nil {
+			return fmt.Errorf("normalize legacy archive: %w", err)
+		}
+
 		if err := installHelperFunctions(ctx, targetDB); err != nil {
 			return fmt.Errorf("install helper functions: %w", err)
 		}
@@ -441,6 +445,38 @@ func copyTableData(ctx context.Context, sourceDB, targetDB *sql.DB, table string
 		return 0, fmt.Errorf("commit archive tx for %s: %w", table, err)
 	}
 	return copied, nil
+}
+
+func normalizeLegacyArchive(ctx context.Context, db *sql.DB) error {
+	_, err := db.ExecContext(ctx, `
+DO $$
+BEGIN
+  IF to_regclass('legacy_newapi.channels') IS NOT NULL THEN
+    IF NOT EXISTS (
+      SELECT 1
+      FROM information_schema.columns
+      WHERE table_schema = 'legacy_newapi'
+        AND table_name = 'channels'
+        AND column_name = 'openai_organization'
+    ) THEN
+      ALTER TABLE legacy_newapi.channels ADD COLUMN openai_organization text;
+    END IF;
+
+    IF EXISTS (
+      SELECT 1
+      FROM information_schema.columns
+      WHERE table_schema = 'legacy_newapi'
+        AND table_name = 'channels'
+        AND column_name = 'open_ai_organization'
+    ) THEN
+      UPDATE legacy_newapi.channels
+      SET openai_organization = open_ai_organization
+      WHERE openai_organization IS NULL;
+    END IF;
+  END IF;
+END;
+$$`)
+	return err
 }
 
 func installHelperFunctions(ctx context.Context, db *sql.DB) error {
