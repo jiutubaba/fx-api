@@ -507,11 +507,15 @@ func transformCoreData(ctx context.Context, db *sql.DB, opts options) ([]transfo
 		statement string
 	}{
 		{"groups", []string{"users", "tokens", "channels"}, migrateGroupsSQL},
+		{"account_pool_groups", []string{"account_pool_accounts", "account_pool_group_bindings"}, migrateAccountPoolGroupsSQL},
 		{"users", []string{"users"}, migrateUsersSQL},
 		{"auth_identities", []string{"users"}, migrateAuthIdentitiesSQL},
 		{"api_keys", []string{"tokens"}, migrateAPIKeysSQL},
+		{"account_pool_cleanup", []string{"channels"}, migrateAccountPoolCleanupSQL},
 		{"accounts", []string{"channels"}, migrateAccountsSQL},
+		{"account_pool_accounts", []string{"account_pool_accounts"}, migrateAccountPoolAccountsSQL},
 		{"account_groups", []string{"channels"}, migrateAccountGroupsSQL},
+		{"account_pool_account_groups", []string{"account_pool_accounts", "account_pool_group_bindings"}, migrateAccountPoolAccountGroupsSQL},
 		{"redeem_codes", []string{"redemptions"}, migrateRedeemCodesSQL},
 		{"usage_logs", []string{"logs"}, migrateUsageLogsSQL},
 		{"payment_orders", []string{"top_ups"}, migratePaymentOrdersSQL},
@@ -902,13 +906,91 @@ WITH raw_names AS (
 names AS (
   SELECT DISTINCT NULLIF(btrim(name), '') AS name
   FROM raw_names
+),
+channel_group_platforms AS (
+  SELECT
+    NULLIF(btrim(group_name), '') AS name,
+    CASE
+      WHEN c.type IN (14) THEN 'anthropic'
+      WHEN c.type IN (24, 41) THEN 'gemini'
+      ELSE 'openai'
+    END AS platform,
+    COUNT(*) AS channel_count,
+    MIN(COALESCE(c.priority::int, 50)) AS min_priority
+  FROM legacy_newapi.channels c
+  CROSS JOIN LATERAL unnest(string_to_array(COALESCE(NULLIF(c."group", ''), 'default'), ',')) AS group_name
+  GROUP BY 1, 2
+),
+ranked_group_platforms AS (
+  SELECT
+    name,
+    platform,
+    ROW_NUMBER() OVER (
+      PARTITION BY name
+      ORDER BY channel_count DESC, min_priority ASC, platform ASC
+    ) AS rn
+  FROM channel_group_platforms
+  WHERE name IS NOT NULL
 )
 INSERT INTO groups (name, description, rate_multiplier, is_exclusive, status, platform, subscription_type, created_at, updated_at)
-SELECT name, 'Migrated from new-api group ' || name, 1.0, false, 'active', 'anthropic', 'standard', NOW(), NOW()
-FROM names
-WHERE name IS NOT NULL
+SELECT
+  n.name,
+  'Migrated from new-api group ' || n.name,
+  1.0,
+  false,
+  'active',
+  COALESCE(rgp.platform, 'anthropic'),
+  'standard',
+  NOW(),
+  NOW()
+FROM names n
+LEFT JOIN ranked_group_platforms rgp ON rgp.name = n.name AND rgp.rn = 1
+WHERE n.name IS NOT NULL
 ON CONFLICT (name) WHERE deleted_at IS NULL
-DO UPDATE SET updated_at = EXCLUDED.updated_at`
+DO UPDATE SET platform = EXCLUDED.platform, updated_at = EXCLUDED.updated_at`
+
+const migrateAccountPoolGroupsSQL = `
+WITH group_platforms AS (
+  SELECT
+    NULLIF(btrim(b.group_name), '') AS name,
+    CASE
+      WHEN lower(btrim(a.platform)) IN ('anthropic', 'claude') THEN 'anthropic'
+      WHEN lower(btrim(a.platform)) IN ('gemini', 'google') THEN 'gemini'
+      WHEN lower(btrim(a.platform)) = 'antigravity' THEN 'antigravity'
+      ELSE 'openai'
+    END AS platform,
+    COUNT(*) AS account_count,
+    MIN(COALESCE(a.priority::int, 50)) AS min_priority
+  FROM legacy_newapi.account_pool_group_bindings b
+  JOIN legacy_newapi.account_pool_accounts a ON a.id = b.account_id
+  GROUP BY 1, 2
+),
+ranked AS (
+  SELECT
+    name,
+    platform,
+    ROW_NUMBER() OVER (
+      PARTITION BY name
+      ORDER BY account_count DESC, min_priority ASC, platform ASC
+    ) AS rn
+  FROM group_platforms
+  WHERE name IS NOT NULL
+)
+INSERT INTO groups (name, description, rate_multiplier, is_exclusive, status, platform, subscription_type, created_at, updated_at)
+SELECT
+  name,
+  'Migrated from new-api account pool group ' || name,
+  1.0,
+  false,
+  'active',
+  platform,
+  'standard',
+  NOW(),
+  NOW()
+FROM ranked
+WHERE rn = 1
+ON CONFLICT (name) WHERE deleted_at IS NULL
+DO UPDATE SET platform = EXCLUDED.platform, updated_at = EXCLUDED.updated_at`
 
 const migrateUsersSQL = `
 WITH ` + quotaPerUnitCTE + `,
@@ -1058,6 +1140,23 @@ ON CONFLICT ("key") DO UPDATE SET
   updated_at = NOW(),
   deleted_at = EXCLUDED.deleted_at`
 
+const migrateAccountPoolCleanupSQL = `
+DELETE FROM account_groups
+WHERE account_id IN (
+  SELECT c.id::bigint
+  FROM legacy_newapi.channels c
+  WHERE lower(btrim(COALESCE(c.key, ''))) = 'account-pool'
+     OR public.fuxi_migrate_safe_jsonb(c.setting, '{}'::jsonb)->>'account_pool_enabled' = 'true'
+);
+
+DELETE FROM accounts
+WHERE id IN (
+  SELECT c.id::bigint
+  FROM legacy_newapi.channels c
+  WHERE lower(btrim(COALESCE(c.key, ''))) = 'account-pool'
+     OR public.fuxi_migrate_safe_jsonb(c.setting, '{}'::jsonb)->>'account_pool_enabled' = 'true'
+)`
+
 const migrateAccountsSQL = `
 INSERT INTO accounts (
   id, name, notes, platform, type, credentials, extra, concurrency, priority,
@@ -1111,6 +1210,8 @@ SELECT
   NOW(),
   NULL
 FROM legacy_newapi.channels c
+WHERE lower(btrim(COALESCE(c.key, ''))) <> 'account-pool'
+  AND public.fuxi_migrate_safe_jsonb(c.setting, '{}'::jsonb)->>'account_pool_enabled' IS DISTINCT FROM 'true'
 ON CONFLICT (id) DO UPDATE SET
   name = EXCLUDED.name,
   notes = EXCLUDED.notes,
@@ -1123,6 +1224,112 @@ ON CONFLICT (id) DO UPDATE SET
   schedulable = EXCLUDED.schedulable,
   updated_at = NOW()`
 
+const migrateAccountPoolAccountsSQL = `
+WITH normalized AS (
+  SELECT
+    (1000000000 + p.id)::bigint AS target_id,
+    p.*,
+    CASE
+      WHEN lower(btrim(p.platform)) IN ('anthropic', 'claude') THEN 'anthropic'
+      WHEN lower(btrim(p.platform)) IN ('gemini', 'google') THEN 'gemini'
+      WHEN lower(btrim(p.platform)) = 'antigravity' THEN 'antigravity'
+      ELSE 'openai'
+    END AS target_platform,
+    CASE lower(replace(btrim(p.type), '-', '_'))
+      WHEN 'oauth' THEN 'oauth'
+      WHEN 'setup_token' THEN 'setup-token'
+      WHEN 'apikey' THEN 'apikey'
+      WHEN 'api_key' THEN 'apikey'
+      WHEN 'upstream' THEN 'upstream'
+      WHEN 'bedrock' THEN 'bedrock'
+      WHEN 'service_account' THEN 'service_account'
+      ELSE 'apikey'
+    END AS target_type,
+    public.fuxi_migrate_safe_jsonb(p.credentials, '{}'::jsonb) AS raw_credentials,
+    public.fuxi_migrate_safe_jsonb(p.extra, '{}'::jsonb) AS raw_extra
+  FROM legacy_newapi.account_pool_accounts p
+),
+prepared AS (
+  SELECT
+    n.*,
+    CASE
+      WHEN n.target_platform = 'openai'
+        AND n.target_type = 'oauth'
+        AND n.raw_credentials ? 'account_id'
+        AND NOT n.raw_credentials ? 'chatgpt_account_id'
+      THEN jsonb_set(n.raw_credentials, '{chatgpt_account_id}', n.raw_credentials->'account_id', true)
+      ELSE n.raw_credentials
+    END AS target_credentials
+  FROM normalized n
+)
+INSERT INTO accounts (
+  id, name, notes, platform, type, credentials, extra, concurrency, priority,
+  rate_multiplier, status, schedulable, created_at, updated_at, deleted_at,
+  rate_limited_at, rate_limit_reset_at, error_message, expires_at,
+  auto_pause_on_expired, last_used_at
+)
+SELECT
+  p.target_id,
+  LEFT(COALESCE(NULLIF(p.name, ''), 'legacy-account-pool-' || p.id::text), 100),
+  'Migrated from new-api account_pool_accounts.id=' || p.id::text,
+  p.target_platform,
+  p.target_type,
+  p.target_credentials,
+  p.raw_extra || jsonb_build_object(
+    'legacy_newapi_account_pool',
+    jsonb_strip_nulls(jsonb_build_object(
+      'id', p.id,
+      'fingerprint', NULLIF(p.fingerprint, ''),
+      'validation_status', NULLIF(p.validation_status, ''),
+      'quota_status', NULLIF(p.quota_status, ''),
+      'quota_used_percent', p.quota_used_percent,
+      'quota_used', p.quota_used,
+      'quota_limit', p.quota_limit,
+      'quota_remaining', p.quota_remaining,
+      'quota_unit', NULLIF(p.quota_unit, ''),
+      'last_checked_at', p.last_checked_at,
+      'check_upstream_status', p.check_upstream_status
+    ))
+  ),
+  COALESCE(p.concurrency::int, 3),
+  COALESCE(p.priority::int, 50),
+  COALESCE(p.rate_multiplier, 1.0),
+  CASE
+    WHEN p.status IN (1, 4) THEN 'active'
+    WHEN p.status = 3 THEN 'error'
+    ELSE 'disabled'
+  END,
+  COALESCE(p.schedulable, true),
+  CASE WHEN COALESCE(p.created_time, 0) > 0 THEN to_timestamp(p.created_time) ELSE NOW() END,
+  CASE WHEN COALESCE(p.updated_time, 0) > 0 THEN to_timestamp(p.updated_time) ELSE NOW() END,
+  NULL,
+  CASE WHEN p.status = 4 THEN COALESCE(CASE WHEN COALESCE(p.last_checked_at, 0) > 0 THEN to_timestamp(p.last_checked_at) END, NOW()) ELSE NULL END,
+  CASE WHEN COALESCE(p.rate_limit_reset_at, 0) > 0 THEN to_timestamp(p.rate_limit_reset_at) ELSE NULL END,
+  NULLIF(COALESCE(NULLIF(p.error_message, ''), NULLIF(p.check_message, '')), ''),
+  CASE WHEN COALESCE(p.expires_at, 0) > 0 THEN to_timestamp(p.expires_at) ELSE NULL END,
+  COALESCE(p.auto_pause_on_expired, false),
+  CASE WHEN COALESCE(p.last_used_at, 0) > 0 THEN to_timestamp(p.last_used_at) ELSE NULL END
+FROM prepared p
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  notes = EXCLUDED.notes,
+  platform = EXCLUDED.platform,
+  type = EXCLUDED.type,
+  credentials = EXCLUDED.credentials,
+  extra = EXCLUDED.extra,
+  concurrency = EXCLUDED.concurrency,
+  priority = EXCLUDED.priority,
+  rate_multiplier = EXCLUDED.rate_multiplier,
+  status = EXCLUDED.status,
+  schedulable = EXCLUDED.schedulable,
+  rate_limited_at = EXCLUDED.rate_limited_at,
+  rate_limit_reset_at = EXCLUDED.rate_limit_reset_at,
+  error_message = EXCLUDED.error_message,
+  expires_at = EXCLUDED.expires_at,
+  auto_pause_on_expired = EXCLUDED.auto_pause_on_expired,
+  last_used_at = EXCLUDED.last_used_at,
+  updated_at = NOW()`
+
 const migrateAccountGroupsSQL = `
 WITH channel_groups AS (
   SELECT
@@ -1131,6 +1338,8 @@ WITH channel_groups AS (
     COALESCE(c.priority::int, 50) AS priority
   FROM legacy_newapi.channels c
   CROSS JOIN LATERAL unnest(string_to_array(COALESCE(NULLIF(c."group", ''), 'default'), ',')) AS group_name
+  WHERE lower(btrim(COALESCE(c.key, ''))) <> 'account-pool'
+    AND public.fuxi_migrate_safe_jsonb(c.setting, '{}'::jsonb)->>'account_pool_enabled' IS DISTINCT FROM 'true'
 )
 INSERT INTO account_groups (account_id, group_id, priority, created_at)
 SELECT cg.account_id, g.id, MIN(cg.priority), NOW()
@@ -1138,6 +1347,23 @@ FROM channel_groups cg
 JOIN accounts a ON a.id = cg.account_id
 JOIN groups g ON g.name = COALESCE(cg.group_name, 'default') AND g.deleted_at IS NULL
 GROUP BY cg.account_id, g.id
+ON CONFLICT (account_id, group_id) DO UPDATE SET priority = EXCLUDED.priority`
+
+const migrateAccountPoolAccountGroupsSQL = `
+WITH bound_groups AS (
+  SELECT
+    (1000000000 + b.account_id)::bigint AS account_id,
+    NULLIF(btrim(b.group_name), '') AS group_name,
+    COALESCE(a.priority::int, 50) AS priority
+  FROM legacy_newapi.account_pool_group_bindings b
+  JOIN legacy_newapi.account_pool_accounts a ON a.id = b.account_id
+)
+INSERT INTO account_groups (account_id, group_id, priority, created_at)
+SELECT bg.account_id, g.id, MIN(bg.priority), NOW()
+FROM bound_groups bg
+JOIN accounts a ON a.id = bg.account_id
+JOIN groups g ON g.name = COALESCE(bg.group_name, 'default') AND g.deleted_at IS NULL
+GROUP BY bg.account_id, g.id
 ON CONFLICT (account_id, group_id) DO UPDATE SET priority = EXCLUDED.priority`
 
 const migrateRedeemCodesSQL = `
