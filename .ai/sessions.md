@@ -1,5 +1,14 @@
 # Recent Sessions
 
+## 2026-05-18 - Post-cutover Cleanup and Release Sync
+
+- Reconfirmed local `main` matches `origin/main` before cleanup.
+- Classified old `new-api`, `new-api-staging`, `/data/new-api/**`, and `F:\newAPI` as protected rollback/backup resources under project rules, not safe deletion targets.
+- Verified production Caddy remains on the new Fuxi API target `127.0.0.1:3300`.
+- Verified production feature flags: `available_channels_enabled=true`, `channel_monitor_enabled=true`, `channel_monitor_default_interval_seconds=60`.
+- Re-ran local backend tests and frontend typecheck/lint before release sync.
+- Prepared release sync around the current GHCR production image and a follow-up documentation commit.
+
 ## 2026-05-18 - Account and Channel Visibility Follow-up
 
 - Added an old-repo-style account statistics strip to the admin account management page.
