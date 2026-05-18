@@ -34,6 +34,8 @@ Last updated: 2026-05-18
 - `free` group `gpt-5.4-mini` chat completion: 200 after release sync.
 - Production release update completed at 2026-05-18 18:33 +08:00 for image revision `33c5e36c31a1b4f8686526ff15fea934565f9982`; `fuxi-api-prod` runs image `sha256:d2dbb784f80a563d13747bf7c9813e014e7e07d447d31e4b92ed3f175f46d567`, healthy with 0 restarts.
 - Verified after the update: local/public `/api/status` 200, homepage 200, `/available-channels` 200, `/monitor` 200, Redis persistence OK, authenticated `/v1/models` 200 (`key_id=10`, 4 models), and `gpt-5.4-mini` `/v1/chat/completions` 200.
+- Production API keys were normalized to the OpenAI-style `sk-` prefix at 2026-05-18 18:47 +08:00: 16 existing `api_keys.key` values were updated (`active=13`, `disabled=3`), with no collisions. Server-side secret backup: `/data/fuxi-api/prod/reports/api-key-prefix-backup-20260518-184747.csv`.
+- After API key prefix normalization, Redis auth cache was cleared and `fuxi-api-prod` restarted healthy. Verified `key_id=10` with prefixed key: `/v1/models` 200 and `gpt-5.4-mini` chat 200; old unprefixed form returns 401 `INVALID_API_KEY`.
 - GET `https://fuxiapi.top/api/status`: 200. Use GET for this endpoint; HEAD is not registered by Gin for the route.
 - GET `https://fuxiapi.top/health`: 200.
 - Old `/data/new-api`, `new-api`, and `new-api-staging` were reconfirmed present after the follow-up deploy and remain intentionally preserved.
@@ -64,5 +66,6 @@ CONFIRM_SWITCH=fuxiapi.top NEW_TARGET=127.0.0.1:3000 /data/fuxi-api/deploy/switc
 - `security.url_allowlist.enabled=false` remains a runtime warning inherited from current config; evaluate separately before tightening upstream URL policy.
 - Production `channels` is empty after migration; available-channel UI currently relies on the account-pool fallback from `accounts` and `groups`.
 - Production `channel_monitors` is empty; channel status UI displays an "unmonitored" account-pool fallback until real monitor tasks are configured.
+- Existing clients must update API keys to include the new `sk-` prefix; unprefixed API keys now intentionally fail authentication.
 - GitHub CI for `33c5e36c` recorded a failed backend `test` job with only `exit code 2` visible via public annotations; local `go test ./...`, `make test-unit`, frontend `typecheck`, and frontend `lint:check` passed before publishing, and GHCR Image/Security Scan were successful.
 - Deleting or overwriting old rollback resources still requires a future project rule change; current rules prohibit it.
