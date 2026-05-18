@@ -8,6 +8,8 @@ SOURCE_NAME="${SOURCE_NAME:-staging}"
 MODE="${MODE:-dry-run}"
 REPORT_DIR="${REPORT_DIR:-/app/reports}"
 LEGAL_DOC="${LEGAL_DOC:-/app/legal/user-agreement.md}"
+APP_UID="${APP_UID:-1000}"
+APP_GID="${APP_GID:-1000}"
 
 case "${SOURCE_NAME}" in
   prod|staging) ;;
@@ -35,6 +37,7 @@ if [ ! -f "${APP_ROOT}/.env" ]; then
   exit 1
 fi
 mkdir -p "${APP_ROOT}/reports" "${APP_ROOT}/legal" "${APP_ROOT}/redis"
+chown -R "${APP_UID}:${APP_GID}" "${APP_ROOT}/reports" "${APP_ROOT}/redis"
 if [ ! -f "${APP_ROOT}/docker-compose.yml" ]; then
   cp "${SCRIPT_DIR}/docker-compose.app.yml" "${APP_ROOT}/docker-compose.yml"
 fi
