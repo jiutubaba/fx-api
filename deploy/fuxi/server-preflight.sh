@@ -75,6 +75,14 @@ else
   fail "docker compose is unavailable"
 fi
 
+postgres_network="$(env_value POSTGRES_NETWORK_NAME 2>/dev/null || true)"
+postgres_network="${postgres_network:-new-api-net}"
+if docker network inspect "$postgres_network" >/dev/null 2>&1; then
+  ok "postgres network ${postgres_network}"
+else
+  fail "missing postgres network ${postgres_network}"
+fi
+
 if [ -d /data/new-api ]; then
   ok "/data/new-api exists and will be left untouched"
 else

@@ -9,6 +9,9 @@ services:
       - ./data:/app/data
       - ./reports:/app/reports
       - ./legal:/app/legal:ro
+    networks:
+      - default
+      - postgres
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
@@ -61,3 +64,8 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+
+networks:
+  postgres:
+    name: ${POSTGRES_NETWORK_NAME:-new-api-net}
+    external: true
