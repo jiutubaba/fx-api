@@ -45,7 +45,7 @@ Last updated: 2026-05-18
 - Legacy `F:\newAPI` AI architecture was rechecked on 2026-05-18. Current project now has the migrated governance pieces that were missing: `tools/check_ai_docs.py`, `tools/MANIFEST.md`, `.ai/assistant_guide.md`, router `last_verified` schema, generated runtime/AI-doc snapshots, and explicit release-closure semantics.
 - Active meaning of `更新发布版` and `更新发布版并归档`: commit/push Git changes, publish or update the GitHub tag/Release, deploy production so `https://fuxiapi.top/` is actually updated, verify production, and update `.ai/MEMORY.md` + `.ai/sessions.md` + `.ai/archive/sessions/`.
 - Root agent entries `AGENTS.md` and `CLAUDE.md` now point to `.ai/assistant_guide.md`, `tools/check_ai_docs.py`, and the full production release meaning of `更新发布版` / `更新发布版并归档`.
-- Production release `v0.1.127` deployed at 2026-05-18 21:33 +08:00. `fuxi-api-prod` runs `ghcr.io/jiutubaba/fx-api:latest` image `sha256:c59db6ae5717934229f0a7b9655202b564b308e94a1f0e4102516c16b11492e7`, healthy with 0 restarts.
+- Production release `v0.1.127` deployed at 2026-05-18 21:33 +08:00, then resynced at 21:51 +08:00 after the archive commit's GHCR image succeeded. `fuxi-api-prod` runs `ghcr.io/jiutubaba/fx-api:latest` image `sha256:0d4d10d184607932cdbd2f5911c441cfee9f3ba518dee0fd5442a23fee000ab3`, healthy with 0 restarts.
 - Verified after `v0.1.127` production deploy: local/public `/api/status` 200, homepage 200, Redis `rdb_last_bgsave_status=ok`, Redis `aof_last_write_status=ok`, Redis write probe OK, authenticated `/v1/models` 200 (`key_id=10`, 4 models), and real `gpt-5.4` `/v1/chat/completions` 200 with response `pong`.
 - Production account-pool state after deploy: `api_keys active=8`; `accounts active=29`; account status distribution is `openai/apikey active=1`, `openai/oauth active=28`, `openai/oauth disabled=72`.
 
@@ -83,4 +83,5 @@ CONFIRM_SWITCH=fuxiapi.top NEW_TARGET=127.0.0.1:3000 /data/fuxi-api/deploy/switc
 - GitHub Release `v0.1.127` published successfully at 2026-05-18 21:22 +08:00: https://github.com/jiutubaba/fx-api/releases/tag/v0.1.127
 - Release workflow run `26035687293` succeeded; tag CI run `26035687297` succeeded; tag Security Scan run `26035687263` succeeded.
 - Main archive commit CI run `26036303890` succeeded.
+- Production deployment archive commit `c239f0a5` succeeded on CI, GHCR Image, and Security Scan; production was then synced to its `latest` image.
 - AI docs health check passed after migration: `python tools/check_ai_docs.py --summary --details` reported 0 failures and 0 warnings; context recall passed for `backend/cmd/server/VERSION`, `frontend/src/views/admin/AccountsView.vue`, and `deploy/fuxi/deploy-staging.sh`.

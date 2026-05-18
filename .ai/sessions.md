@@ -5,7 +5,7 @@
 - Published GitHub Release `v0.1.127`: `https://github.com/jiutubaba/fx-api/releases/tag/v0.1.127`.
 - Confirmed Release workflow `26035687293`, tag CI `26035687297`, tag Security Scan `26035687263`, and main archive CI `26036303890` succeeded.
 - Deployed production by pulling `ghcr.io/jiutubaba/fx-api:latest` and recreating `fuxi-api-prod`.
-- Verified `fuxi-api-prod` healthy with 0 restarts on image `sha256:c59db6ae5717934229f0a7b9655202b564b308e94a1f0e4102516c16b11492e7`.
+- Verified `fuxi-api-prod` healthy with 0 restarts on final synced image `sha256:0d4d10d184607932cdbd2f5911c441cfee9f3ba518dee0fd5442a23fee000ab3`.
 - Verified local/public `/api/status`, homepage, Redis persistence/write state, authenticated `/v1/models`, and a real `gpt-5.4` `/v1/chat/completions` request.
 - Updated release semantics: `更新发布版` and `更新发布版并归档` now mean commit/push, GitHub tag/Release, production deploy to `https://fuxiapi.top/`, verification, and archive.
 
