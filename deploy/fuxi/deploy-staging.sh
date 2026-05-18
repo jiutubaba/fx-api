@@ -4,7 +4,7 @@ set -euo pipefail
 APP_ROOT="/data/fuxi-api/staging"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-mkdir -p "${APP_ROOT}/data" "${APP_ROOT}/reports" "${APP_ROOT}/legal"
+mkdir -p "${APP_ROOT}/data" "${APP_ROOT}/reports" "${APP_ROOT}/legal" "${APP_ROOT}/redis"
 if [ ! -f "${APP_ROOT}/.env" ]; then
   cp "${SCRIPT_DIR}/env.staging.example" "${APP_ROOT}/.env"
   echo "Created ${APP_ROOT}/.env. Fill secrets and rerun."

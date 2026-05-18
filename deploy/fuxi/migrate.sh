@@ -34,7 +34,7 @@ if [ ! -f "${APP_ROOT}/.env" ]; then
   echo "Missing ${APP_ROOT}/.env."
   exit 1
 fi
-mkdir -p "${APP_ROOT}/reports" "${APP_ROOT}/legal"
+mkdir -p "${APP_ROOT}/reports" "${APP_ROOT}/legal" "${APP_ROOT}/redis"
 if [ ! -f "${APP_ROOT}/docker-compose.yml" ]; then
   cp "${SCRIPT_DIR}/docker-compose.app.yml" "${APP_ROOT}/docker-compose.yml"
 fi

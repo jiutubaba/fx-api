@@ -44,3 +44,20 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: ${REDIS_IMAGE:-redis:8.4-alpine}
+    container_name: ${REDIS_CONTAINER_NAME:-fuxi-api-redis}
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ./redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
